@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset= "UFT-8">
+        <meta name= "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content = "ie=edge">
+        <title>Drag and Drop</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"> 
+        <link rel= "stylesheet" href="screen.css">
+        <script src= "main.js" defer></script>
+    </head>
+
+
+    <body>
+
+      <div class="nav">
+        <a href="#Home">Home</a>
+        <a class="active" href="#Easy">Easy Level</a>
+        <a href="#Medium">Medium Level</a>
+        <a href="#Difficult">Difficult Level</a>
+      
+    </div>
+
+    <h3>Time Remaining: 00:09</h3>    <!-- will use timer library -->
+    <br>
+
+   <h6>Current Score: 64</h6>    <!--js to count -->
+
+    <table style="width:100%">
+
+      <tr>
+  
+        <td>
+
+      <section class= "draggable-elements"> 
+        <i class= "fa fa-coffee draggable" draggable="true" style="color:aquamarine" id = "coffee"></i>
+        <i class= "fa fa-hourglass-end draggable" draggable="true" style="color:coral" id = "hourglass"></i>
+        <i class= "fa fa-fighter-jet draggable" draggable="true"  style ="color:deeppink" id = "jet"></i>
+      </section> 
+      </td>
+
+      <td>
+        <div class="grid-container">
+       
+        <section class = "droppable-elements">
+        <div class="droppable" data-draggable-id="coffee"><span id="Block1">B1</span></div>
+        <div class="droppable" data-draggable-id="jet"><span id="Block2">B2</span></div>
+        <div class="droppable" data-draggable-id="hourglass"><span id="Block3">B3</span></div>
+        </section>
+
+        <section class = "droppable-elements">
+          <div class="droppable" data-draggable-id="coffee"><span id="Block1">B4</span></div>
+          <div class="droppable" data-draggable-id="jet"><span id="Block2">B5</span></div>
+          <div class="droppable" data-draggable-id="hourglass"><span id="Block3">B6</span></div>
+          </section>
+
+       
+        
+          <!-- <div class="grid-part"></div>
+          <div class="grid-part"></div>  
+          <div class="grid-part"></div>  
+          <div class="grid-part"></div>  
+          <div class="grid-part"></div>  
+          <div class="grid-part"></div>  
+          <div class="grid-part"></div>  
+           
+            -->
+        </div>
+  
+        <!-- <br> -->
+    
+      <div>
+          <button class="button">Run</button>
+  
+          <button class="button">Reset</button>
+  
+          <button class="button">Submit</button>
+      </div>
+        
+      </td>
+
+      <td>
+        <div class="starScream">
+        <span class ="fa fa-star filled" id = "star1"></span>
+        <span class ="fa fa-star filled" id = "star2"></span>
+        <span class ="fa fa-star filled" id = "star3"></span>
+        <span class="fa fa-star" id = "star4"></span>
+        <span class="fa fa-star" id = "star5"></span>
+      </div>
+        
+      </td>
+      </tr>
+    </table>
+
+    </body>
