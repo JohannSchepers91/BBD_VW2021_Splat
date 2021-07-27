@@ -1,0 +1,199 @@
+Hard Puzzle solution:
+
+Repeat
+Walk
+if IsTileCurrent(junction) do 
+(
+if IsTileAhead(open) or IsTileAhead(Splat) do Turn(left)
+if IsTileAhead(wall) do turn(right)
+)
+until IsTileCurrent(Bank)
+deposit(index by blue mixer) -- Banked Red splat
+
+turn(right)
+walk
+turn(right)
+
+repeat
+walk
+if IsTileAhead(splat) do turn(right)
+if IsTileAhead(wall) do turn(left)
+until IsTileCurrent(Bank)
+deposit(index by yellow mixer) --Banked Blue splat and made Purple
+
+walk
+turn(right)
+
+repeat
+walk
+if IsTileCurrent(Junction) AND IsTileAhead(Wall) do Turn(right)
+else if IsTileCurrent(Junction) AND IsTileAhead(Empty) do Turn(left)
+if IsTileAhead(Splat) do turn(around) + Walk + turn(left)
+until IsTileAhead(wall)
+
+turn(around)
+repeat
+walk
+if IsTileAhead(wall) do turn(left)
+if IsTileAhead(wall) do turn(around)
+until IsColor(Yellow) -- Yellow Splat
+
+turn(right)
+repeat
+walk
+if IsTileAhead(wall) do turn(left)
+if IsTileAhead(wall) do turn(around)
+until IsTileAhead(Gate)
+
+turn(left) 
+repeat
+walk
+if IsTileCurrent(Junction) do turn(right)
+if IsTileAhead(wall) do turn(around)
+until IsTileAhead(Splat)
+
+turn(around)
+
+Repeat
+Walk
+if IsTileCurrent(junction) do 
+(
+if IsTileAhead(open) or IsTileAhead(Splat) do Turn(left)
+if IsTileAhead(wall) do turn(right)
+)
+until IsTileCurrent(Bank)
+deposit(index by red mixer) -- Banked Yellow Splat
+
+repeat
+walk
+if IsTileAhead(wall) do turn(right)
+until IsTileAhead(empty) AND IsTileCurrent(Junction)
+
+walk 
+turn(left)
+
+repeat
+walk
+if IsTileCurrent(Junction) AND IsTileAhead(wall) do turn(left)
+if IsTileAhead(wall) do turn(right)
+until IsTileCurrent(Junction) AND IsTileAhead(Empty) -- Made Orange Splat
+
+turn(right)
+repeat
+walk
+if IsTileAhead(Wall) do turn(right)
+until IsTileAhead(wall)
+
+turn(right)
+repeat
+walk
+if IsTileCurrent(Junction) do turn(right)
+if IsTileAhead(wall) do turn(around)
+until IsTileAhead(Splat)
+
+turn(around)
+walk
+turn(right)
+
+repeat
+walk
+if IsTileAhead(wall) do turn(left)
+if IsTileAhead(wall) do turn(around)
+until IsTileCurrent(Junction) AND IsTileAhead(Empty)
+
+turn(right)
+
+repeat
+walk
+if IsTileCurrent(Junction) do turn(right)
+if IsTileAhead(Wall) do turn(left)
+until IsColor(Grey) --Grey Splat
+
+turn(around)
+repeat
+walk
+if IsTileCurrent(Junction) AND IsTileAhead(wall) do turn(left)
+if IsTileAhead(wall) do turn(right)
+until IsTileAhead(wall)
+
+turn(around)
+walk
+turn(right)
+
+repeat
+walk
+if IsCurrentTile(Junction) AND IsTileAhead(wall) do turn(left)
+if IsCurrentTile(Junction) AND IsTileAhead(Gate) do turn(right)
+until IsColor(Orange)
+
+turn(right)
+repeat
+walk
+if IsTileAhead(Wall) do turn(right)
+until IsTileAhead(wall)
+
+turn(around)
+
+repeat
+walk
+if IsTileAhead(wall) do turn(left)
+if IsTileCurrent(Junction) do turn(right)
+until IsTileAhead(Gate)
+
+turn(left)
+repeat
+walk
+if IsTileAhead(Wall) do turn(right)
+if IsTileAhead(Wall) do turn(around)
+until IsTileCurrent(Junction) AND IsTileAhead(Empty) -- Made Green Splat
+
+turn(left)
+repeat
+walk
+If IsTileCurrent(Junction) OR IsTileAhead(Wall) do turn(left)
+until IsTileAhead(Wall)
+
+turn(right)
+repeat
+walk
+if IsTileCurrent(Junction) AND IsTileAhead(Wall) do turn(left)
+if IsTileAhead(Wall) do turn(right)
+until IsTileAhead(Wall)
+
+turn(right)
+repeat
+walk
+if IsTileCurrent(Junction) do turn(right)
+if IsTileAhead(wall) do turn(around)
+until IsTileAhead(Splat)
+
+turn(around)
+
+Repeat
+Walk
+if IsTileCurrent(junction) do 
+(
+if IsTileAhead(open) or IsTileAhead(Splat) do Turn(left)
+if IsTileAhead(wall) do turn(right)
+)
+until IsTileCurrent(Bank)
+deposit(index by Goal) -- Banked Green Splat
+
+repeat
+walk
+if IsTileAhead(Wall) do turn(right)
+until IsTileCurrent(Junction) AND IsTileAhead(Empty)
+
+turn(left)
+repeat
+walk
+if IsTileAhead(Wall) do turn(right)
+until IsTileAhead(Wall)
+
+turn(around)
+
+repeat
+walk
+if IsTileAhead(wall) do turn(left)
+if IsTileCurrent(Junction) do turn(right)
+until reached_end
