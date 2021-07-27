@@ -1,4 +1,5 @@
-import { PlayerPos } from "../models/Player";
+import { Color } from "../models/color.js";
+import { Player } from "../models/player.js";
 
 export const LEVEL_1 = {
 
@@ -23,6 +24,6 @@ map : [
     ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
 ],
 
-playerPos : PlayerPos = new PlayerPos(0, 0, 1)
+player : new Player(1, 1, 0, Color.orange)
 
 };
