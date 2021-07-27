@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset= "UFT-8">
+        <meta name= "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content = "ie=edge">
+        <title>Drag and Drop</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"> 
+        <link rel= "stylesheet" href="style.css">
+        <script src= "main.js" defer></script>
+    </head>
+    <body>
+      <section class= "draggable-elements"> 
+        <i class= "fa fa-coffee draggable" draggable="true" style="color:rgb(30, 107, 81)" id = "coffee"><span id="Coffee">Walk</span></i>
+        <i class= "fa fa-hourglass-end draggable" draggable="true" style="color:coral" id = "hourglass"><span id="Hourglass">TurnRight</span></i>
+        <i class= "fa fa-fighter-jet draggable" draggable="true"  style ="color:deeppink" id = "jet"><span id="Jet">Loop</span></i>
+      </section> 
+      <section class = "droppable-elements">
+        <div class="droppable" data-draggable-id="coffee"><span id="Block1">Block 1</span></div>
+        <div class="droppable" data-draggable-id="jet"><span id="Block2">Block 2</span></div>
+        <div class="droppable" data-draggable-id="hourglass"><span id="Block3">Block 3</span></div>
+
+
+      </section>
+    </body>
