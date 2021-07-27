@@ -1,13 +1,10 @@
 import { Color } from "./color.js";
+import { Direction } from "./direction.js";
 
 export class Player {
     x = 0;
     y = 0;
-
-    //start facing north
-    dir = 0;
-
-    //start as orange
+    dir = Direction.North;
     color = Color.orange;
 
     constructor(x, y, dir, color) {

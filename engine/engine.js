@@ -31,6 +31,7 @@ export class Engine {
                 case Command.turn: this.applyTurn(command); break;
                 case Command.if_do_else: this.applyIfDoElse(command); break;
                 case Command.repeat_until: this.applyRepeatUntil(command); break;
+                case Command.deposit: this.applyDeposit(command); break;
             }
         }
     }
@@ -81,6 +82,11 @@ export class Engine {
             this.applyCommandsToMap(command.params2);
 
         } while (!this.evaluateCondition(command.param1));
+    }
+
+    applyDeposit(command) {
+
+        //TODO
     }
 
     evaluateCondition(command) {

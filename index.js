@@ -35,24 +35,16 @@ function start() {
             
     
             if (player.x === x && player.y === y) {
-
-                if (player.dir === 0) {
-                    line += "N ";
-
-                } else if (player.dir === 1) {
-                    line += "E ";
-
-                } else if (player.dir === 2) {
-                    line += "S ";
-                } else {
-                    line += "W ";
-                }
+                line += "X ";
     
             } else if (tile === "Wall") {
                 line += "# ";
     
             } else if (tile === "Empty") {
                 line += "- ";
+
+            } else if (tile === "Splat") {
+                line += "S ";
             }
         }
     
