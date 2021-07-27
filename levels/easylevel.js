@@ -1,0 +1,30 @@
+import { PlayerPos } from "../models/Player";
+import { Direction } from "../models/direction";
+import { Color } from "../models/color.js";
+
+export const LEVEL_1 = {
+
+map : [
+    ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
+    ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Goal 2", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Empty", "Empty", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Gate 1", "Wall", "Wall", "Wall"],
+    ["Wall", "Empty", "Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Gate 2", "Splat 1", "Wall"],
+    ["Wall", "Empty", "Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
+    ["Wall", "Empty", "Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Splat 2", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Gate 2", "Wall", "Gate 4", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall", "Empty", "Wall", "Splat 4", "Empty", "Empty", "Empty", "Empty", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall", "Gate 1", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Splat 1", "Wall", "Empty", "Wall"],
+    ["Wall", "Gate 2", "Wall", "Wall", "Wall", "Wall", "Gate 2", "Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall"],
+    ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Splat 4", "Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
+    ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
+],
+
+player : new Player(16, 8, Direction.South, Color.green)
+
+};

@@ -1,0 +1,35 @@
+Easy puzzle solution:
+
+Repeat
+walk
+if IsTileAhead(Wall) OR IsTileAhead(Gate) do turn(right)
+Until IsColor(Purple)
+
+TurnX2(any same)
+
+repeat
+walk
+if IsTileCurrent(Junction) do Turn(right)
+if IsTileAhead(Wall) do Turn(Right)
+until IsColor(Orange)
+
+turnX2
+
+Repeat
+Walk
+if IsTileCurrent(Junction) do Turn(right)
+if IsTileAhead(wall) do turn(left)
+until Pink
+
+Turn x2
+
+Repeat
+Walk
+until IsTileCurrent(Junction)
+Turn(Left)
+
+Repeat
+Walk
+if IsTileCurrent(Junction) do turn(right)
+if IsTileAhead(Wall) do turn(right)
+until REACHED_END
