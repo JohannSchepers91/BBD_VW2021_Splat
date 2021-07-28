@@ -10,6 +10,7 @@ export class Engine {
     commands;
     changes = [];
     emergencyStop = false;
+    reachedEnd = false;
 
     constructor(map, player, commands) {
 
@@ -28,12 +29,13 @@ export class Engine {
         }
     }
 
-    //Start the map change calculation and return the result
-    getMapChanges() {
+    //Start the map change calculation
+    start() {
         this.changes.push(new Change(this.map, this.player));
 
         this.applyCommandsToMap(this.commands);
-        return this.changes;
+
+        return this.reachedEnd;
     }
 
     //Finds the color of applicable tiles
@@ -51,7 +53,7 @@ export class Engine {
 
         for (let i = 0; i < commands.length; i++) {
 
-            if (this.emergencyStop) {
+            if (this.emergencyStop || this.reachedEnd) {
                 return;
             }
 
@@ -69,6 +71,13 @@ export class Engine {
 
     pushChanges() {
 
+        console.log(this.changes.length);
+
+        if (this.changes.length > 1000) {
+            this.emergencyStop = true;
+            return;
+        }
+
         let change = new Change(this.map, this.player);
 
         let repeatCount = 0;
@@ -76,7 +85,7 @@ export class Engine {
 
         //Check if the exact same change state has occurred 30 times before
         //This is indicates an infinite loop
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 100; i++) {
 
             let index = this.changes.findIndex((val, index) => {
 
@@ -95,7 +104,7 @@ export class Engine {
             repeatCount++;
         }
 
-        if (repeatCount >= 30) {
+        if (repeatCount >= 100) {
             this.emergencyStop = true;
             return;
         }
@@ -104,11 +113,11 @@ export class Engine {
     }
 
     applyWalk() {
-        
+
         let newPos = this.player.tryWalk();
         let tile = String(this.map[newPos.y][newPos.x]);
 
-        if (tile.startsWith("Empty")) {
+        if (tile.startsWith("Empty") || tile.startsWith("Junction")) {
             //Update player position
             this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
             this.pushChanges();
@@ -153,6 +162,16 @@ export class Engine {
             this.pushChanges();
 
             return;
+        }
+
+        //Reached end
+        if (tile.startsWith("Goal")) {
+
+            this.reachedEnd = true;
+
+            //Update player position
+            this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
+            this.pushChanges();
         }
 
         //Mix color if walked over mixer
@@ -206,6 +225,11 @@ export class Engine {
             this.applyCommandsToMap(command.params2);
 
         } else {
+
+            if (!command.params3) {
+                return;
+            }
+
             this.applyCommandsToMap(command.params3);
         }
 
@@ -214,7 +238,7 @@ export class Engine {
     applyRepeatUntil(command) {
 
         do {
-            if (this.emergencyStop) {
+            if (this.emergencyStop || this.reachedEnd) {
                 return;
             }
 
@@ -254,7 +278,7 @@ export class Engine {
     }
 
     evaluateColor(command) {
-        return (this.player.color === parseInt(command.param1));
+        return (this.player.color === command.param1);
     }
 
     evaluateTileType(param, tile) {
@@ -283,7 +307,7 @@ export class Engine {
         let tile = String(this.map[this.player.y][this.player.x]);
         let param = command.param1;
 
-        return this.evaluateTileType((param, tile));
+        return this.evaluateTileType(param, tile);
     }
 
     evaluateReachedEnd() {

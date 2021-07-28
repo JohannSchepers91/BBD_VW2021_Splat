@@ -1,8 +1,7 @@
 import { Engine } from "./engine/engine.js";
-import { LEVEL_1 } from "./levels/levels.js";
-import { Command } from "./models/Command.js";
+import { EASY_LEVEL } from "./levels/easylevel.js";
 import { Direction } from "./models/direction.js";
-import { Turn } from "./models/turn.js";
+import { Change } from "./models/engineChange.js";
 
 document.getElementById("start").onclick = function() {  
     start();
@@ -14,24 +13,28 @@ function sleep(ms) {
 
 async function start() {
 
-    let commands = [
-        new Command(Command.turn, Turn.right),
-        new Command(Command.walk),
-        new Command(Command.turn, Turn.right),
-        new Command(Command.walk),
+    let commands = EASY_LEVEL.solution;
+    let engine = new Engine(EASY_LEVEL.map, EASY_LEVEL.player, commands);
+    let res = engine.start();
+    let changes = engine.changes;
 
-        new Command(Command.repeat_until, new Command(Command.is_tile_ahead, "Wall"), [
-            new Command(Command.walk)
-        ])
-    ];
-    
-    let engine = new Engine(LEVEL_1.map, LEVEL_1.player, commands);
-    
-    let changes = engine.getMapChanges();
+    let currentChange = changes[0];
+    renderMap(currentChange);
 
     for (let i = 0; i < changes.length; i++) {
+
+        if (Change.equals(currentChange, changes[i])) {
+            continue;
+        }
+
+        currentChange = changes[i];
         renderMap(changes[i]);
+
         await sleep(200);
+    }
+
+    if (!res) {
+        alert("Fail");
     }
 }
 
@@ -59,6 +62,8 @@ function renderMap(change) {
                     line += "s ";
                 } else if (player.dir === Direction.West) {
                     line += "w ";
+                } else {
+                    line += "x ";
                 }
     
             } else if (tile === "Wall") {
@@ -72,6 +77,12 @@ function renderMap(change) {
 
             } else if (tile.startsWith("Gate")) {
                 line += "G ";
+
+            } else if (tile.startsWith("Goal")) {
+                line += "L ";
+
+            } else if (tile.startsWith("Junction")) {
+                line += "+ ";
             }
         }
     

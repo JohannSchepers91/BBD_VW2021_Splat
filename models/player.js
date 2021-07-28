@@ -37,7 +37,16 @@ export class Player {
     }
 
     turn(val) {
-        //Ensure that -1 gets wrapped to 3
-        this.dir = (this.dir + val) % 4;
+        //Ensure that dir gets wrapped around 3
+        this.dir = this.mod(this.dir + val, 4);
+
+        if (this.dir < 0 || this.dir > 3) {
+            alert("Val ")
+        }
     }
+
+    mod(n, m) {
+        var remain = n % m;
+        return Math.floor(remain >= 0 ? remain : remain + m);
+    };
 }
