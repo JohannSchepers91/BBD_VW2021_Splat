@@ -1,8 +1,8 @@
-import { PlayerPos } from "../models/Player";
-import { Direction } from "../models/direction";
+import { Player } from "../models/player.js";
+import { Direction } from "../models/direction.js";
 import { Color } from "../models/color.js";
 
-export const LEVEL_1 = {
+export const EASY_LEVEL = {
 
 map : [
     ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],

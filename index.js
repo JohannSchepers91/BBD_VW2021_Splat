@@ -29,11 +29,9 @@ async function start() {
     
     let changes = engine.getMapChanges();
 
-    alert("got changes");
-
     for (let i = 0; i < changes.length; i++) {
         renderMap(changes[i]);
-        await sleep(300);
+        await sleep(200);
     }
 }
 
@@ -41,8 +39,6 @@ function renderMap(change) {
 
     let player = change.player;
     let map = change.map;
-
-    console.log("render map");
 
     document.getElementById("text").value = "";
 

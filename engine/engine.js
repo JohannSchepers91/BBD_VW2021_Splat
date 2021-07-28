@@ -5,16 +5,27 @@ import { Player } from "../models/player.js";
 
 export class Engine {
 
-    map;
+    map = [];
     player;
     commands;
     changes = [];
     emergencyStop = false;
 
     constructor(map, player, commands) {
-        this.map = map;
-        this.player = player;
+
         this.commands = commands;
+        this.player = new Player(player.x, player.y, player.dir, player.color);
+
+        for (let y = 0; y < map.length; y++) {
+
+            let row = [];
+
+            for (let x = 0; x < map[0].length; x++) {
+                row.push(map[y][x]);
+            }
+
+            this.map.push(row);
+        }
     }
 
     //Start the map change calculation and return the result
@@ -45,8 +56,6 @@ export class Engine {
             }
 
             let command = commands[i];
-
-            console.log("Command: " + command.type + "   stop: " + this.emergencyStop);
 
             switch(command.type) {
                 case Command.walk: this.applyWalk(); break;

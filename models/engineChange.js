@@ -1,13 +1,24 @@
 import { Player } from "./player.js";
 
 export class Change {
-    map = null;
+    
+    map = [];
     player = null;
 
     constructor(map, player) {
-        this.map = map;
 
-        this.player = player;
+        this.player = new Player(player.x, player.y, player.dir, player.color);
+
+        for (let y = 0; y < map.length; y++) {
+
+            let row = [];
+
+            for (let x = 0; x < map[0].length; x++) {
+                row.push(map[y][x]);
+            }
+
+            this.map.push(row);
+        }
     }
 
     static equals(c1, c2) {
