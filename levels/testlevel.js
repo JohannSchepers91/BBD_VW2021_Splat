@@ -8,11 +8,11 @@ export const TEST_LEVEL = {
 
 map : [
     ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
-    ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
+    ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Bank_A 0", "Empty", "Bank_B 0 0", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
     ["Wall", "Empty", "Splat 4", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
     ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
     ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
-    ["Wall", "Empty", "Mixer_A 0", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
+    ["Wall", "Empty", "Mixer_A 0", "Empty", "Empty", "Empty", "Empty", "Empty", "Bank_B 0 1", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
     ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
     ["Wall", "Empty", "Splat 1", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
     ["Wall", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall"],
@@ -28,6 +28,24 @@ map : [
 ],
 
 player : new Player(2, 1, Direction.South, Color.orange),
+
+
+//Bank test
+/*solution : [
+
+    new Command(Command.turn, Turn.left),
+
+    new Command(Command.repeat_until, new Command(Command.reached_end), [
+
+        new Command(Command.walk),
+
+        new Command(Command.if_do_else, new Command(Command.is_tile_current, "Bank"), [
+
+            new Command(Command.deposit, 0)
+        ])
+
+    ])
+]*/
 
 solution : [
 

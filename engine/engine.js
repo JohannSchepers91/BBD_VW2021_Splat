@@ -129,7 +129,8 @@ export class Engine {
         let newPos = this.player.tryWalk();
         let tile = String(this.map[newPos.y][newPos.x]);
 
-        if (tile.startsWith("Empty") || tile.startsWith("Junction")) {
+        if (tile.startsWith("Empty") || tile.startsWith("Junction") || tile.startsWith("Bank_A")) {
+
             //Update player position
             this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
             this.pushChanges();
@@ -178,6 +179,15 @@ export class Engine {
 
         //Reached end
         if (tile.startsWith("Goal")) {
+
+            let color = Engine.getTileColor(tile);
+
+            //Access denied
+            if (color !== this.player.color) {
+                this.pushChanges();
+
+                return;
+            }
 
             //Update player position
             this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
@@ -265,7 +275,16 @@ export class Engine {
     }
 
     applyDeposit(command) {
+
+        let tile = String(this.map[this.player.y][this.player.x]);
+
+        if (!tile.startsWith("Bank_A")) {
+            return;
+        }
+
         let pos = this.findTile("Bank_B", command.param1);
+        
+        let bankIndex = Engine.getTileIndex(tile);
 
         let newTile = `Bank_B ${this.player.color} ${bankIndex}`;
 
