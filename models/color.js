@@ -10,7 +10,7 @@ export class Color {
     static grey = 0;
     static goop = 7;
 
-    mix(color1, color2) {
+    static mix(color1, color2) {
         return color1 | color2;
     }
 }
