@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset= "UFT-8">
+        <meta name= "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content = "ie=edge">
+        <title>Drag and Drop Better</title>
+        <link rel= "stylesheet" href="stylesheet.css">
+        <script src= "script.js" defer></script>
+        <script src="pixi.min.js"></script>
+    </head>
+    <div class="boxed" draggable=true>
+    <p class = draggable>Walk</p>
+</div>
+<br>
+<div class="boxed" draggable=true>
+   <select class = draggable id="list" onchange="getSelectValue()";>
+    <option value = "turn right">Turn Right</option>
+    <option value = "turn left">Turn Left</option>
+    <option value = "turn back">Turn Back</option>
+</select>
+</div>
+<br>
+<div class="boxed" draggable=true>
+<form method="post" class = draggable>  
+    If  
+            <input type="text" name="condition1"/>  
+    Do  
+            <input type="text" name="action"/> 
+            <br> 
+    Else  
+            <input type="text" name="action"/>  
+        </form> 
+    </div>
+        <br>
+        <div class="boxed" draggable=true>
+        <form method="post" class = draggable>  
+           Repeat  
+                    <input type="text" name="do_code"/>  
+            Until  
+                    <input type="text" name="stopCondition"/> 
+ 
+                </form> 
+            </div>
+            <br>
+            <div class="boxed" draggable=true>
+            <p class = draggable>Is tile ahead 
+            <select id="list" onchange="getSelectValue()";> 
+            <option value = "Empty">Empty</option>
+            <option value = "Wall">Wall</option>
+            <option value = "Splat">Splat</option>
+            <option value = "Mixer">Mixer</option>
+            <option value = "Bank">Bank</option>
+            <option value = "Junction">Junction</option>
+            </select>
+        </p>
+    </div>
+
+        <br>
+        <div class="boxed" draggable=true> 
+        <p class = draggable>Is tile current 
+        <select id="list" onchange="getSelectValue()";> 
+            <option value = "Empty">Empty</option>
+            <option value = "Wall">Wall</option>
+            <option value = "Splat">Splat</option>
+            <option value = "Mixer">Mixer</option>
+            <option value = "Bank">Bank</option>
+            <option value = "Junction">Junction</option>
+        </select>
+    </p>
+</div>
+
+    <br>
+    <div class="boxed" draggable=true> 
+    <p class = draggable>Is colour
+    <select id="list" onchange="getSelectValue()";> 
+        <option value = "0">0</option>
+        <option value = "1">1</option>
+        <option value = "2">2</option>
+        <option value = "3">3</option>
+        <option value = "4">4</option>
+        <option value = "5">5</option>
+        <option value = "6">6</option>
+    </select>
+</p>
+</div>
+<br>
+<div class="boxed" draggable=true>
+<form method="post" class = draggable>  
+   Deposit
+             <input type="text" name="do_code"/>   
+         </form> 
+        </div>
+        <br>
+        <div class="boxed" draggable=true>
+<p class = draggable>Reached end</p>
+</div>
+<script>
+    function getValue(){
+        var selectedValue = document.getElementByID("list").value;
+    }
+</script>
+
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>
+<div class="CodeSnapTo"><span class="droppable"></span></div>

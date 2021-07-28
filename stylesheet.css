@@ -1,0 +1,20 @@
+.boxed {
+    box-sizing: border;
+width: 100%;
+border: solid #5B6DCD 10px;
+padding: 1px;
+    background:rgb(255, 174, 145);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 90px; 
+  }
+
+.CodeSnapTo{
+box-sizing: border;
+width: 100%;
+border: solid #5B6DCD 10px;
+padding: 30px;
+width: 90px;
+position: relative;
+top: -950px;
+right: -1200px;
+  }
