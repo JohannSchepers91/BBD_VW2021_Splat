@@ -30,9 +30,13 @@ map : [
 player : new Player(2, 1, Direction.North, Color.green),
 
 solution : [
-    new Command(Command.repeat_until,new Command(Command.is_tile_current, "Junction"),
+    new Command(Command.repeat_until, new Command(Command.is_tile_current, "Junction"), [
         new Command(Command.walk),
-    [new Command(Command.if_do_else,new Command(Command.is_tile_ahead, "Wall"),[new Command(Command.turn,Turn.right)])]),
+
+        new Command(Command.if_do_else, new Command(Command.is_tile_ahead, "Wall"), [
+            new Command(Command.turn,Turn.right)
+        ])
+    ]),
 
     new Command(Command.repeat_until,new Command(Command.is_tile_current,"Junction"),
         new Command(Command.walk),
