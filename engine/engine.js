@@ -1,5 +1,6 @@
 import { Color } from "../models/color.js";
 import { Command } from "../models/command.js";
+import { Change } from "../models/engineChange.js";
 import { Player } from "../models/player.js";
 
 export class Engine {
@@ -8,6 +9,7 @@ export class Engine {
     player;
     commands;
     changes = [];
+    emergencyStop = false;
 
     constructor(map, player, commands) {
         this.map = map;
@@ -17,6 +19,8 @@ export class Engine {
 
     //Start the map change calculation and return the result
     getMapChanges() {
+        this.changes.push(new Change(this.map, this.player));
+
         this.applyCommandsToMap(this.commands);
         return this.changes;
     }
@@ -36,7 +40,13 @@ export class Engine {
 
         for (let i = 0; i < commands.length; i++) {
 
+            if (this.emergencyStop) {
+                return;
+            }
+
             let command = commands[i];
+
+            console.log("Command: " + command.type + "   stop: " + this.emergencyStop);
 
             switch(command.type) {
                 case Command.walk: this.applyWalk(); break;
@@ -48,13 +58,59 @@ export class Engine {
         }
     }
 
+    pushChanges() {
+
+        let change = new Change(this.map, this.player);
+
+        let repeatCount = 0;
+        let repeatIndex = -1;
+
+        //Check if the exact same change state has occurred 30 times before
+        //This is indicates an infinite loop
+        for (let i = 0; i < 30; i++) {
+
+            let index = this.changes.findIndex((val, index) => {
+
+                if (index <= repeatIndex) {
+                    return false;
+                }
+
+                return Change.equals(val, change);
+            });
+
+            if (index === -1) {
+                break;
+            }
+
+            repeatIndex = index + 1;
+            repeatCount++;
+        }
+
+        if (repeatCount >= 30) {
+            this.emergencyStop = true;
+            return;
+        }
+
+        this.changes.push(change);
+    }
+
     applyWalk() {
         
         let newPos = this.player.tryWalk();
         let tile = String(this.map[newPos.y][newPos.x]);
 
+        if (tile.startsWith("Empty")) {
+            //Update player position
+            this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
+            this.pushChanges();
+
+            return;
+        }
+
         //Cannot walk through walls
         if (tile.startsWith("Wall")) {
+            this.pushChanges();
+
             return;
         }
 
@@ -65,8 +121,16 @@ export class Engine {
 
             //Access denied
             if (color !== this.player.color) {
+                this.pushChanges();
+
                 return;
             }
+
+            //Update player position
+            this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
+            this.pushChanges();
+
+            return;
         }
 
         //Change the color if walked over a splat
@@ -74,6 +138,12 @@ export class Engine {
 
             let color = this.getTileColor(tile);
             this.player.color = color;
+
+            //Update player position
+            this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
+            this.pushChanges();
+
+            return;
         }
 
         //Mix color if walked over mixer
@@ -81,17 +151,17 @@ export class Engine {
             let mixerIndex = this.getTileColor(tile);
             let mixer = this.findMixerB(mixerIndex);
 
-            if (mixer === null) {
-                return;
-            }
-
             let mixedColor = Color.mix(player.color, mixer.color);
+            let newTile = `Mixer_B ${mixedColor} ${mixerIndex}`;
 
-            this.map[mixer.y][mixer.x] = `Mixer_B ${mixedColor} ${mixerIndex}`;
+            this.map[mixer.y][mixer.x] = newTile;
+
+            //Update player position
+            this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
+            this.pushChanges();
+
+            return;
         }
-
-        //Update player position
-        this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
     }
 
     findMixerB(mixerIndex) {
@@ -117,8 +187,8 @@ export class Engine {
     }
 
     applyTurn(command) {
-        //turn "left" | "right" | "back"
         this.player.turn(command.param1);
+        this.pushChanges();
     }
 
     applyIfDoElse(command) {
@@ -135,6 +205,10 @@ export class Engine {
     applyRepeatUntil(command) {
 
         do {
+            if (this.emergencyStop) {
+                return;
+            }
+
             this.applyCommandsToMap(command.params2);
 
         } while (!this.evaluateCondition(command.param1));

@@ -14,6 +14,13 @@ export class Player {
         this.color = color;
     }
 
+    static equals(p1, p2) {
+        return p1.x === p2.x &&
+        p1.y === p2.y &&
+        p1.dir === p2.dir &&
+        p1.color === p2.color;
+    }
+
     tryWalk() {
 
         switch(this.dir) {
@@ -24,7 +31,7 @@ export class Player {
             case Direction.South: return new Player(this.x, this.y+1, this.dir, this.color);
 
             case Direction.West: return new Player(this.x-1, this.y, this.dir, this.color);
-            
+
             default: return new Player(this.x, this.y, this.dir, this.color);
         }
     }

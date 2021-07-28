@@ -6,9 +6,13 @@ import { Turn } from "./models/turn.js";
 
 document.getElementById("start").onclick = function() {  
     start();
-}; 
+};
 
-function start() {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function start() {
 
     let commands = [
         new Command(Command.turn, Turn.right),
@@ -23,18 +27,31 @@ function start() {
     
     let engine = new Engine(LEVEL_1.map, LEVEL_1.player, commands);
     
-    engine.getMapChanges();
-    
-    let map = engine.map;
-    let player = engine.player;
-    
+    let changes = engine.getMapChanges();
+
+    alert("got changes");
+
+    for (let i = 0; i < changes.length; i++) {
+        renderMap(changes[i]);
+        await sleep(300);
+    }
+}
+
+function renderMap(change) {
+
+    let player = change.player;
+    let map = change.map;
+
+    console.log("render map");
+
+    document.getElementById("text").value = "";
+
     for (let y = 0; y < 18; y++) {
         let line = "";
     
         for (let x = 0; x < 18; x++) {
     
             let tile = map[y][x];
-            
     
             if (player.x === x && player.y === y) {
 
