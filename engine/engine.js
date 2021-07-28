@@ -67,6 +67,8 @@ export class Engine {
 
             let command = commands[i];
 
+            console.log(command.type);
+
             switch(command.type) {
                 case Command.walk: this.applyWalk(); break;
                 case Command.turn: this.applyTurn(command); break;
@@ -78,8 +80,6 @@ export class Engine {
     }
 
     pushChanges() {
-
-        console.log(this.changes.length);
 
         if (this.changes.length > 1000) {
             this.emergencyStop = true;
@@ -160,7 +160,7 @@ export class Engine {
         }
 
         //Change the color if walked over a splat
-        if (tile.startsWith("Splat")) {
+        if (tile.startsWith("Splat") || tile.startsWith("Mixer_B") || tile.startsWith("Bank_B")) {
 
             let color = Engine.getTileColor(tile);
             this.player.color = color;
@@ -186,13 +186,15 @@ export class Engine {
 
         //Mix color if walked over mixer
         if (tile.startsWith("Mixer_A")) {
+
+            //GetTileColor gets the first param which in this special case is the index of the mixer
             let mixerIndex = Engine.getTileColor(tile);
-            let mixer = this.findMixerB(mixerIndex);
+            let pos = this.findTile("Mixer_B", mixerIndex);
 
             let mixedColor = Color.mix(player.color, mixer.color);
             let newTile = `Mixer_B ${mixedColor} ${mixerIndex}`;
 
-            this.map[mixer.y][mixer.x] = newTile;
+            this.map[pos.y][pos.x] = newTile;
 
             //Update player position
             this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
@@ -202,7 +204,7 @@ export class Engine {
         }
     }
 
-    findMixerB(mixerIndex) {
+    findTile(type, mixerIndex) {
 
         for(let y = 0; y < this.map.length; y++) {
 
@@ -210,7 +212,7 @@ export class Engine {
 
                 let tile = String(this.map[y][x]);
 
-                if (tile.startsWith("Mixer_B")) {
+                if (tile.startsWith(type)) {
                     let color = Engine.getTileColor(tile);
                     let index = Engine.getTileIndex(tile);
 
@@ -258,8 +260,13 @@ export class Engine {
     }
 
     applyDeposit(command) {
+        let pos = this.findTile("Bank_B", command.param1);
 
-        //TODO
+        let newTile = `Bank_B ${this.player.color} ${bankIndex}`;
+
+        this.map[pos.y][pos.x] = newTile;
+        this.pushChanges();
+        
     }
 
     evaluateCondition(command) {

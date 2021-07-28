@@ -1,57 +1,149 @@
-import { LEVEL } from "../levels/medlevel.js";
+import { Direction } from "../models/direction.js";
+import { Change } from "../models/engineChange.js";
+import { Engine } from "./engine.js";
 
-// Helper function
-const blockType = (input) =>{
-  return input.slice(0,input.indexOf(' '));
-};
+export class Render {
 
-const canvas = document.getElementById("game-canvas");
+    mapElement;
+    changes = [];
+    stop = false;
 
-const app = new PIXI.Application({ 
-    view: canvas,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    backgroundColor:  0xFFFFFF,      
-  }
-);
-
-const gridcontainer = new PIXI.Container();
-gridcontainer.x = app.screen.width / 2;
-gridcontainer.y = app.screen.height / 2;
-
-const graphics = new PIXI.Graphics();
-const width = 20;
-const height = 20;
-
-let grid = LEVEL.map;
-
-let innerGridLength = grid[0].length;
-
-for (let i = 0 ; i < grid.length ; i++){
-  for( let j = 0 ; j < innerGridLength; j++){
-
-    if(grid[i][j] === "Wall"){
-
-      let posX = (j - innerGridLength / 2) * width
-      let posY = (i - innerGridLength / 2) * height 
-      // Make a rectangle
-      graphics.beginFill(0x000000);
-      graphics.drawRect(posX, posY, width, height);
-      graphics.endFill();
-
-    }else if ( blockType(grid[i][j]) === "Gate" ){
-
-      let posX = (j - innerGridLength / 2) * width
-      let posY = (i - innerGridLength / 2) * height 
-      // Make a rectangle
-      graphics.beginFill(0xFFFF);
-      graphics.drawRect(posX, posY, width, height);
-      graphics.endFill();
+    constructor(mapElement, changes) {
+        this.mapElement = mapElement;
+        this.changes = changes;
     }
 
-  }
+    renderFirst() {
+        this.stop = false;
+        this.renderMap(this.changes[0]);
+    }
+
+    static sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    async startRender() {
+        this.stop = false;
+
+        let currentChange = this.changes[0];
+        this.renderMap(currentChange);
+
+        for (let i = 0; i < this.changes.length; i++) {
+
+            if (this.stop) {
+                return false;
+            }
+
+            if (Change.equals(currentChange, this.changes[i])) {
+                continue;
+            }
+
+            currentChange = this.changes[i];
+            this.renderMap(this.changes[i]);
+
+            await Render.sleep(100);
+        }
+
+        return true;
+    }
+
+    stopRender() {
+        this.stop = true;
+    }
+
+
+    renderMap(change) {
+
+        let player = change.player;
+        let map = change.map;
+    
+        this.mapElement.innerHTML = "";
+    
+        for (let y = 0; y < 18; y++) {
+            let line = "";        
+        
+            for (let x = 0; x < 18; x++) {
+        
+                if (this.stop) {
+                    return;
+                }
+
+                let tile = map[y][x];
+                let char = "";
+                let color = -1;
+        
+                if (player.x === x && player.y === y) {
+    
+                    if (player.dir === Direction.North) {
+                        char = "^ ";
+    
+                    } else if (player.dir === Direction.East) {
+                        char = "> ";
+    
+                    } else if (player.dir === Direction.South) {
+                        char = "v ";
+    
+                    } else if (player.dir === Direction.West) {
+                        char = "< ";
+    
+                    } else {
+                        char = "x ";
+                    }
+    
+                    color = player.color;
+        
+                } else if (tile === "Wall") {
+                    char = "# ";
+        
+                } else if (tile === "Empty") {
+                    char = ". ";
+                
+                } else if (tile === "Wall_Pipe") {
+                    char = "= ";
+
+                } else if (tile.startsWith("Splat")) {
+                    char = "S ";
+                    color = Engine.getTileColor(tile);
+    
+                } else if (tile.startsWith("Gate")) {
+                    char = "G ";
+                    color = Engine.getTileColor(tile);
+    
+                } else if (tile.startsWith("Goal")) {
+                    char = "F ";
+                    color = Engine.getTileColor(tile);
+    
+                } else if (tile.startsWith("Junction")) {
+                    char = "+ ";
+
+                } else if (tile.startsWith("Mixer_A")) {
+                    char = "M ";
+
+                } else if (tile.startsWith("Mixer_B")) {
+                    char = "S ";
+                    color = Engine.getTileColor(tile);
+
+                } else if (tile.startsWith("Bank_A")) {
+                    char = "B ";
+
+                } else if (tile.startsWith("Bank_B")) {
+                    let index = Engine.getTileIndex(tile);
+                    color = Engine.getTileColor(tile);
+                    char = `${index} `;
+                }
+    
+                //Last character
+                if (x == 17) {
+                    line += `<tt class="color-${color}">${char}</tt>`;
+    
+                } else {
+                    line += `<tt class="color-${color}">${char} &nbsp </tt>`;
+                }
+    
+                
+            }
+        
+            this.mapElement.innerHTML += line + "</br>";
+        }
+    }
 }
-
-gridcontainer.addChild(graphics);
-
-app.stage.addChild(gridcontainer);
