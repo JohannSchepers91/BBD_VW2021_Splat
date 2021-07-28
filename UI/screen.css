@@ -111,8 +111,10 @@ layout */
 
 .code-block {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.8s;
-  padding: 500px 150px;
+  transition: 0.1s;
+  padding: 10px 10px;
+  width: fit-content;
+  height: max-content;
 }
 
 .codde-block:hover {
@@ -154,5 +156,5 @@ layout */
  
 }
 .starScream{
-  position: relative; bottom: 350px;
+  position: relative; bottom: 400px;
 }
