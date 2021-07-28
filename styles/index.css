@@ -208,6 +208,16 @@ layout */
   height: 500px;
   width: 500px;
 }
+
+.grid-con{
+  display: grid;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px;
+  background-color: #333;
+  padding: 20px;
+  height: 700px;
+  width: 900px;
+}
 .grid-part {
   background-color: #10A5F5;
   border: 1px solid #10A5F5;
@@ -225,7 +235,10 @@ layout */
   margin: 4px 2px;
   cursor: pointer;
   background-color: #FF6600;
+  border-radius: 50%;
 }
+
+
 
 /* stars  */
 .filled {
@@ -237,7 +250,40 @@ layout */
   margin-top: auto;
 }
 
+.con {
+  position: relative;
+  text-align: center;
+  color: white;
+}
 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
+.container {
+  padding: 16px;
+}
 
-  
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span  for small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+
+  .cen {
+    align-content: center;
+    align-self: start;
+    align-items: center;
+    justify-content: center;
+  }
