@@ -8,6 +8,7 @@ export class Color {
     static green = 6;
 
     static grey = 0;
+    static goop = 7;
 
     mix(color1, color2) {
         return color1 | color2;
