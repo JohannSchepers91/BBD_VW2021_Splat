@@ -61,16 +61,16 @@ function renderMap(change) {
             if (player.x === x && player.y === y) {
 
                 if (player.dir === Direction.North) {
-                    char = "n ";
+                    char = "^ ";
 
                 } else if (player.dir === Direction.East) {
-                    char = "e ";
+                    char = "> ";
 
                 } else if (player.dir === Direction.South) {
-                    char = "s ";
+                    char = "v ";
 
                 } else if (player.dir === Direction.West) {
-                    char = "w ";
+                    char = "< ";
 
                 } else {
                     char = "x ";
@@ -82,7 +82,7 @@ function renderMap(change) {
                 char = "# ";
     
             } else if (tile === "Empty") {
-                char = "- ";
+                char = ". ";
 
             } else if (tile.startsWith("Splat")) {
                 char = "S ";
@@ -93,7 +93,8 @@ function renderMap(change) {
                 color = Engine.getTileColor(tile);
 
             } else if (tile.startsWith("Goal")) {
-                char = "L ";
+                char = "F ";
+                color = Engine.getTileColor(tile);
 
             } else if (tile.startsWith("Junction")) {
                 char = "+ ";
