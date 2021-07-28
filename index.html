@@ -72,11 +72,82 @@
     
     </div>
 
-  <script src="https://unpkg.com/blockly"></script>
-  <script src="scripts/main.js"></script>
-  <script src="./custom_generator.js"></script>
+ 
 
 </div>
+      </td>
 
+      <td>
+        <td>
+            <div class="grid-container">
+           
+            </div>
+      
+            <!-- <br> -->
+        
+          <div>
+              <button class="button1">Run</button>
+      
+              <button class="button1">Reset</button>
+      
+              <button class="button1">Submit</button>
+          </div>
+            
+          </td>
+      </td>
+
+      <td>
+                 
+  <div class="code-block">
+    <main>
+     <button class="mode-maker mdl-button" id="edit">Edit code</button>
+     <button class="mode-edit mdl-button mdl-js-button" id="done">Done</button>
+     <button class="mode-blockly mdl-button mdl-js-button" id="save">Save</button>
+     <p class="hint mode-edit">Tap any button to edit its code. <br/>When complete, press Done.</p>
+ 
+     <div class="maker">
+       <div>
+         <div class="button mdl-color--blue-500">Click here for code blocks</div>
+       </div>
+       
+     </div>
+ 
+     <div class="blockly-editor">
+ 
+       <div id="blocklyDiv" style="height: 480px; width: 400px;"></div>
+       
+       <xml id="toolbox" style="display: none">
+ 
+         <!-- block1 codeblock -->
+ 
+         <block type="controls_repeat_ext">
+           <value name="TIMES">
+             <shadow type="math_number">
+               <field name="NUM">5</field>
+             </shadow>
+           </value>
+         </block>
+ 
+         <block type="vars_set">
+             <field name="VAR_SET" variabletype="panda"></field>
+           </block>
+ 
+ 
+       
+     </xml>
+     
+     </div>
+ 
+  
+ 
+ </div>
+      </td>
+
+      </tr>
+   </table>
+
+   <script src="https://unpkg.com/blockly"></script>
+   <script src="scripts/main.js"></script>
+   <script src="./custom_generator.js"></script>
 </body>
 </html>
