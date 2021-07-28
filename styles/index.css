@@ -60,10 +60,10 @@ main {
   }
   
   .button {
-    width: 120px;
-    height: 140px;
+    width: 500px;
+    height: 400px;
     color: #fff;
-    font-size: 3em;
+    font-size: 15px;
     text-align: center;
     vertical-align: middle;
     line-height: 140px;
@@ -71,6 +71,172 @@ main {
   
   .mdl-button {
     margin: 1em 0;
-    float: right;
+    float: left;
+    background-color: #FF6600
   }
+
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #eee;
+  color: #111;
+  font-size: 2rem;
+}
+/* 
+dragging and dropping yay */
+.draggable-elements {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+.draggable {
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  margin: 0rem 0.5rem;
+  cursor: move;
+  transition: opacity 0.2s;
+}
+.draggable:hover {
+  opacity: 0.5;
+}
+.droppable {
+  height: 6.5rem;
+  width: 6.5rem;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #fff;
+  border: 3px dashed #111;
+  transition: border-width 0.2s, transform 0.2s, background-color 0.4s;
+}
+.droppable span {
+  font-size: 1.25rem;
+  pointer-events: none; /* The element is never the target of pointer events */
+}
+
+/* Drag and Drop Related Styling */
+
+.droppable.droppable-hover {
+  /* background-color: #bee3f0; */
+  border-width: 5px;
+  transform: scale(1.1);
+}
+.droppable.dropped {
+  border-style: solid;
+  color: #fff;
+}
+.droppable.dropped span {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+.droppable.dropped i {
+  pointer-events: none;
+}
+.draggable.dragged {
+  user-select: none;
+  opacity: 0.1;
+  cursor: default;
+}
+.draggable.dragged:hover {
+  opacity: 0.1;
+}
+
+@media (max-width: 600px) {
+  html { font-size: 14px; }
+  .draggable-elements { margin: 1.5rem; }
+}
+/* 
+layout */
+.nav {
+  overflow: hidden;
+  background-color: #10A5F5;
+}
+
+.nav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px 20px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav a.active {
+  background-color: #FF6600;
+  color: white;
+}
+
+.code-block {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.1s;
+  padding: 10px 10px;
+  width: fit-content;
+  height: max-content;
+}
+
+.code-block:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px;
+  background-color: #10A5F5;
+  padding: 20px;
+  height: 500px;
+  width: 500px;
+}
+.grid-part {
+  background-color: #10A5F5;
+  border: 1px solid #10A5F5;
+  padding: 0px;
+}
+
+.button1 {
+  border: none;
+  color: white;
+  padding: 15px 56px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #FF6600;
+}
+
+/* stars  */
+.filled {
+  color: orange;
+ 
+}
+.starScream{
+  position: relative; bottom: 400px;
+}
+
+
+
+
   

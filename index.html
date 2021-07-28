@@ -13,20 +13,35 @@
 </head>
 
 <body mode="maker">
-  <header class="mdl-color--cyan-500">
-    <h1 class="mode-maker">Splat</h1>
-    <h1 class="mode-edit mode-blockly">Code Block Configuration</h1>
-  </header>
 
-  <main>
-    <button class="mode-maker mdl-button" id="edit">Edit</button>
+    <div class="nav">
+        <a href="home.html">Home</a>
+        <a class="active" href="level1.html">Easy Level</a>
+        <a href="level2.html">Medium Level</a>
+        <a href="level3.html">Difficult Level</a>
+      
+    </div>
+
+    <h3>Time Remaining: 00:09</h3>    <!-- will use timer library -->
+    
+   <h6>Current Score: 64</h6>    <!--js to count -->
+
+   <table style="width:100%">
+
+    <tr>
+
+      <td>
+        
+  <div class="code-block">
+   <main>
+    <button class="mode-maker mdl-button" id="edit">Edit code</button>
     <button class="mode-edit mdl-button mdl-js-button" id="done">Done</button>
     <button class="mode-blockly mdl-button mdl-js-button" id="save">Save</button>
     <p class="hint mode-edit">Tap any button to edit its code. <br/>When complete, press Done.</p>
 
     <div class="maker">
       <div>
-        <div class="button mdl-color--blue-500">Block A</div>
+        <div class="button mdl-color--blue-500">Click here for code blocks</div>
       </div>
       
     </div>
@@ -60,6 +75,8 @@
   <script src="https://unpkg.com/blockly"></script>
   <script src="scripts/main.js"></script>
   <script src="./custom_generator.js"></script>
+
+</div>
 
 </body>
 </html>

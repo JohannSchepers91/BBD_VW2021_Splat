@@ -117,7 +117,7 @@ layout */
   height: max-content;
 }
 
-.codde-block:hover {
+.code-block:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
@@ -158,3 +158,6 @@ layout */
 .starScream{
   position: relative; bottom: 400px;
 }
+
+
+
