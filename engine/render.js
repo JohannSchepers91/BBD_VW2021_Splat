@@ -1,27 +1,38 @@
 import { LEVEL } from "../levels/medlevel.js";
 
-// Helper function
-const blockType = (input) =>{
-  return input.slice(0,input.indexOf(' '));
-};
+// Window dimensions
+let _w = window.innerWidth;
+let _h = window.innerHeight;
 
 const canvas = document.getElementById("game-canvas");
 
-const app = new PIXI.Application({ 
-    view: canvas,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    backgroundColor:  0xFFFFFF,      
-  }
-);
+const renderer = new PIXI.Renderer({ 
+	view:canvas,
+	width: _w,
+	height: _h,
+	backgroundColor:  0xFFFFFF,
+	resolution: window.devicePixelRatio,
+	autoDensity: true      
+});
 
-const gridcontainer = new PIXI.Container();
-gridcontainer.x = app.screen.width / 2;
-gridcontainer.y = app.screen.height / 2;
+// Responsive window
+window.addEventListener('resize',resize);
+function resize(){
+	_w = window.innerWidth;
+	_h = window.innerHeight; 
+
+	renderer.resize(_w,_h);
+}
+
+const stage = new PIXI.Container();
+const mazeContainer = new PIXI.Container();
+
+mazeContainer.x = renderer.screen.width / 2;
+mazeContainer.y = renderer.screen.height / 2;
 
 const graphics = new PIXI.Graphics();
-const width = 20;
-const height = 20;
+const tileW = 20;
+const tileH = 20;
 
 let grid = LEVEL.map;
 
@@ -32,26 +43,40 @@ for (let i = 0 ; i < grid.length ; i++){
 
     if(grid[i][j] === "Wall"){
 
-      let posX = (j - innerGridLength / 2) * width
-      let posY = (i - innerGridLength / 2) * height 
+      let posX = (j - innerGridLength / 2) * tileW;
+      let posY = (i - innerGridLength / 2) * tileH; 
       // Make a rectangle
       graphics.beginFill(0x000000);
-      graphics.drawRect(posX, posY, width, height);
+      graphics.drawRect(posX, posY, tileW, tileH);
       graphics.endFill();
 
     }else if ( blockType(grid[i][j]) === "Gate" ){
 
-      let posX = (j - innerGridLength / 2) * width
-      let posY = (i - innerGridLength / 2) * height 
+      let posX = (j - innerGridLength / 2) * tileW
+      let posY = (i - innerGridLength / 2) * tileH 
       // Make a rectangle
       graphics.beginFill(0xFFFF);
-      graphics.drawRect(posX, posY, width, height);
+      graphics.drawRect(posX, posY, tileW, tileH);
       graphics.endFill();
     }
 
   }
 }
 
-gridcontainer.addChild(graphics);
+mazeContainer.addChild(graphics);
+stage.addChild(mazeContainer);
 
-app.stage.addChild(gridcontainer);
+const ticker = new PIXI.Ticker();
+ticker.add(animate);
+ticker.start()
+function animate(){
+	mazeContainer.x = renderer.screen.width / 2;
+	mazeContainer.y = renderer.screen.height / 2;
+
+	renderer.render(stage);
+}
+
+// Helper function
+function blockType(input){
+	return input.slice(0,input.indexOf(' '));
+};
