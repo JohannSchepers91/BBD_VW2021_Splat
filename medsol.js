@@ -119,6 +119,8 @@ let commands = [
     new Command(Command.repeat_until,new Command(Command.is_tile_current,"Bank"),
         new Command(Command.walk)), // Bank A -- (store yellow)
 
+    new Command(Command.deposit, 1),
+
     new Command(Command.turn, Turn.back),
     new Command(Command.walk),
     new Command(Command.turn, Turn.left),
