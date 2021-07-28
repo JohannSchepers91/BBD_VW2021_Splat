@@ -47,12 +47,12 @@ export class Engine {
     }
 
     //Finds the color of applicable tiles
-    getTileColor(tile) {
+    static getTileColor(tile) {
         return parseInt(tile.substring(tile.indexOf(" ") + 1));
     }
 
     //Finds the index of applicable tiles
-    getTileIndex(tile) {
+    static getTileIndex(tile) {
         return parseInt(tile.substring(tile.lastIndexOf(" ") + 1));
     }
 
@@ -143,7 +143,7 @@ export class Engine {
         //If the player is same color, allow travel
         if (tile.startsWith("Gate")) {
 
-            let color = this.getTileColor(tile);
+            let color = Engine.getTileColor(tile);
 
             //Access denied
             if (color !== this.player.color) {
@@ -162,7 +162,7 @@ export class Engine {
         //Change the color if walked over a splat
         if (tile.startsWith("Splat")) {
 
-            let color = this.getTileColor(tile);
+            let color = Engine.getTileColor(tile);
             this.player.color = color;
 
             //Update player position
@@ -175,16 +175,18 @@ export class Engine {
         //Reached end
         if (tile.startsWith("Goal")) {
 
-            this.reachedEnd = true;
-
             //Update player position
             this.player = new Player(newPos.x, newPos.y, this.player.dir, this.player.color);
             this.pushChanges();
+
+            this.reachedEnd = true;
+
+            return;
         }
 
         //Mix color if walked over mixer
         if (tile.startsWith("Mixer_A")) {
-            let mixerIndex = this.getTileColor(tile);
+            let mixerIndex = Engine.getTileColor(tile);
             let mixer = this.findMixerB(mixerIndex);
 
             let mixedColor = Color.mix(player.color, mixer.color);
@@ -209,8 +211,8 @@ export class Engine {
                 let tile = String(this.map[y][x]);
 
                 if (tile.startsWith("Mixer_B")) {
-                    let color = getTileColor(tile);
-                    let index = getTileIndex(tile);
+                    let color = Engine.getTileColor(tile);
+                    let index = Engine.getTileIndex(tile);
 
                     if (index === mixerIndex) {
                         return {x: x, y: y, color: color};
@@ -319,8 +321,6 @@ export class Engine {
     }
 
     evaluateReachedEnd() {
-        let tile = String(this.map[this.player.x][this.player.y]);
-
-        return tile.startsWith("Goal");
+        return this.reachedEnd;
     }
 }

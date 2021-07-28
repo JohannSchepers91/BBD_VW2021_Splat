@@ -7,6 +7,8 @@ document.getElementById("start").onclick = function() {
     start();
 };
 
+renderMap(EASY_LEVEL);
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -30,7 +32,7 @@ async function start() {
         currentChange = changes[i];
         renderMap(changes[i]);
 
-        await sleep(200);
+        await sleep(100);
     }
 
     switch (res) {
@@ -45,49 +47,69 @@ function renderMap(change) {
     let player = change.player;
     let map = change.map;
 
-    document.getElementById("text").value = "";
+    document.getElementById("map").innerHTML = "";
 
     for (let y = 0; y < 18; y++) {
-        let line = "";
+        let line = "";        
     
         for (let x = 0; x < 18; x++) {
     
             let tile = map[y][x];
+            let char = "";
+            let color = -1;
     
             if (player.x === x && player.y === y) {
 
                 if (player.dir === Direction.North) {
-                    line += "n ";
+                    char = "n ";
+
                 } else if (player.dir === Direction.East) {
-                    line += "e ";
+                    char = "e ";
+
                 } else if (player.dir === Direction.South) {
-                    line += "s ";
+                    char = "s ";
+
                 } else if (player.dir === Direction.West) {
-                    line += "w ";
+                    char = "w ";
+
                 } else {
-                    line += "x ";
+                    char = "x ";
                 }
+
+                color = player.color;
     
             } else if (tile === "Wall") {
-                line += "# ";
+                char = "# ";
     
             } else if (tile === "Empty") {
-                line += "- ";
+                char = "- ";
 
             } else if (tile.startsWith("Splat")) {
-                line += "S ";
+                char = "S ";
+                color = Engine.getTileColor(tile);
 
             } else if (tile.startsWith("Gate")) {
-                line += "G ";
+                char = "G ";
+                color = Engine.getTileColor(tile);
 
             } else if (tile.startsWith("Goal")) {
-                line += "L ";
+                char = "L ";
 
             } else if (tile.startsWith("Junction")) {
-                line += "+ ";
+                char = "+ ";
             }
+
+            //Last character
+            if (x == 17) {
+                line += `<tt class="color-${color}">${char}</tt>`;
+
+            } else {
+                line += `<tt class="color-${color}">${char} &nbsp </tt>`;
+            }
+
+            
         }
     
-        document.getElementById("text").value += line + "\n";
+        document.getElementById("map").innerHTML += line + "</br>";
     }
 }
