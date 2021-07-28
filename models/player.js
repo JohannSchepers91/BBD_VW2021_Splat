@@ -34,17 +34,7 @@ export class Player {
     }
 
     turn(val) {
-
-        //90deg anti-clockwise
-        if (val === "left") {
-            this.dir++;
-
-        //90deg clockwise
-        } else {
-            this.dir++;
-        }
-
         //Ensure that -1 gets wrapped to 3
-        this.dir = this.dir % 4;
+        this.dir = (this.dir + val) % 4;
     }
 }

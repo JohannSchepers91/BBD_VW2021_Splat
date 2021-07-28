@@ -57,11 +57,24 @@ export class Engine {
             }
         }
 
+        //Change the color if walked over a splat
+        if (tile.startsWith("Splat")) {
+
+            let color = parseInt(tile.substring(6));
+            this.player.color = color;
+        }
+
+        //Mix color if walked over mixer
+        if (tile.startsWith) {
+            let tileColor = parseInt(tile)
+
+        }
+
         this.player = newPos;
     }
 
     applyTurn(command) {
-        //turn "left" | "right"
+        //turn "left" | "right" | "back"
         this.player.turn(command.param1);
     }
 
@@ -120,23 +133,11 @@ export class Engine {
 
     evaluateTileType(param, tile) {
 
-        if (param === "Blank" && tile === "Empty") {
-            return true;
-        }
-
-        if (param === "Wall" && tile.startsWith("Wall")) {
+        if (tile.startsWith(param)) {
             return true;
         }
 
         if (param === "Splat" && (tile.startsWith("Splat") || tile.startsWith("Mixer_B") || tile.startsWith("Bank_B"))) {
-            return true;
-        }
-
-        if (param === "Mixer" && tile.startsWith("Mixer")) {
-            return true;
-        }
-
-        if (param === "Bank" && tile.startsWith("Bank")) {
             return true;
         }
 

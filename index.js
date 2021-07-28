@@ -1,6 +1,7 @@
 import { Engine } from "./engine/engine.js";
 import { LEVEL_1 } from "./levels/levels.js";
 import { Command } from "./models/Command.js";
+import { Turn } from "./models/turn.js";
 
 document.getElementById("start").onclick = function() {  
     start();
@@ -9,9 +10,9 @@ document.getElementById("start").onclick = function() {
 function start() {
 
     let commands = [
-        new Command(Command.turn, "right"),
+        new Command(Command.turn, Turn.right),
         new Command(Command.walk),
-        new Command(Command.turn),
+        new Command(Command.turn, Turn.right),
         new Command(Command.walk),
 
         new Command(Command.repeat_until, new Command(Command.is_tile_ahead, "Wall"), [
