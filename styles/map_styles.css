@@ -10,14 +10,16 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     margin: auto;
+    background-color: black;
 }
 
 tt {
     float: left;
+    color: white;
 }
 
 .color--1 {
-    color: black;
+    color: white;
 }
 
 .color-0 {
