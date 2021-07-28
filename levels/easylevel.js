@@ -62,7 +62,7 @@ solution : [
         ])
     ]),
 
-    new Command(Command.turn, Turn.back),
+    new Command(Command.turn, Turn.left),
 
     new Command(Command.repeat_until, new Command(Command.is_tile_current, "Junction"), [
         new Command(Command.walk)
