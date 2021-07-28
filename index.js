@@ -33,8 +33,10 @@ async function start() {
         await sleep(200);
     }
 
-    if (!res) {
-        alert("Fail");
+    switch (res) {
+        case 0: alert("Reached goal!"); break;
+        case 1: alert("Stuck in infinite loop"); break;
+        case 2: alert("Did not reach the end"); break;
     }
 }
 

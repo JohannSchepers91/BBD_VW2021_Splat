@@ -35,7 +35,15 @@ export class Engine {
 
         this.applyCommandsToMap(this.commands);
 
-        return this.reachedEnd;
+        if (this.emergencyStop) {
+            return 1;
+        }
+
+        if (!this.reachedEnd) {
+            return 2;
+        }
+
+        return 0;
     }
 
     //Finds the color of applicable tiles
@@ -53,7 +61,7 @@ export class Engine {
 
         for (let i = 0; i < commands.length; i++) {
 
-            if (this.emergencyStop || this.reachedEnd) {
+            if (this.emergencyStop) {
                 return;
             }
 
