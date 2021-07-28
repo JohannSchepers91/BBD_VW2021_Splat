@@ -1,6 +1,6 @@
 import { Engine } from "./engine/engine.js";
 import { Render } from "./engine/render.js";
-import { MEDIUM_LEVEL } from "./levels/medlevel.js";
+import { MEDIUM_LEVEL } from "./levels/medlevel.js"
 
 //Vars
 var render;
