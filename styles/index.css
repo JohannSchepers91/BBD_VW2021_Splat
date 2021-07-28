@@ -232,8 +232,9 @@ layout */
   color: orange;
  
 }
-.starScream{
-  position: relative; bottom: 400px;
+.starScream {
+  position: relative; bottom: 600px;
+  margin-top: auto;
 }
 
 
