@@ -59,6 +59,10 @@ export class Engine {
     //This function is intended to be called recursively to apply the codeblock logic to the map
     applyCommandsToMap(commands) {
 
+        if (!Array.isArray(commands)) {
+            commands = [commands];
+        }
+
         for (let i = 0; i < commands.length; i++) {
 
             if (this.emergencyStop) {
@@ -81,6 +85,8 @@ export class Engine {
 
     pushChanges() {
 
+        let threshold = 15;
+
         if (this.changes.length > 1000) {
             this.emergencyStop = true;
             return;
@@ -93,7 +99,7 @@ export class Engine {
 
         //Check if the exact same change state has occurred 30 times before
         //This is indicates an infinite loop
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < threshold; i++) {
 
             let index = this.changes.findIndex((val, index) => {
 
@@ -112,7 +118,7 @@ export class Engine {
             repeatCount++;
         }
 
-        if (repeatCount >= 100) {
+        if (repeatCount >= threshold) {
             this.emergencyStop = true;
             return;
         }
@@ -234,6 +240,7 @@ export class Engine {
     applyIfDoElse(command) {
 
         if (this.evaluateCondition(command.param1)) {
+
             this.applyCommandsToMap(command.params2);
 
         } else {
