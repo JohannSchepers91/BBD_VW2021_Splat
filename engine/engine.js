@@ -71,8 +71,6 @@ export class Engine {
 
             let command = commands[i];
 
-            console.log(command.type);
-
             switch(command.type) {
                 case Command.walk: this.applyWalk(); break;
                 case Command.turn: this.applyTurn(command); break;
@@ -197,7 +195,7 @@ export class Engine {
             let mixerIndex = Engine.getTileColor(tile);
             let pos = this.findTile("Mixer_B", mixerIndex);
 
-            let mixedColor = Color.mix(player.color, mixer.color);
+            let mixedColor = Color.mix(this.player.color, pos.color);
             let newTile = `Mixer_B ${mixedColor} ${mixerIndex}`;
 
             this.map[pos.y][pos.x] = newTile;
