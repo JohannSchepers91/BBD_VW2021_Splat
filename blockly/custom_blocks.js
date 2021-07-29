@@ -111,7 +111,7 @@ Blockly.defineBlocksWithJsonArray([
 	  },
 	  {
 		"type": "input_statement",
-		"name": "NAME"
+		"name": "else_code"
 	  }
 	],
 	"previousStatement": null,
@@ -130,7 +130,7 @@ Blockly.defineBlocksWithJsonArray([
 	  },
 	  {
 		"type": "input_statement",
-		"name": "NAME"
+		"name": "code"
 	  }
 	],
 	"previousStatement": null,
@@ -334,11 +334,7 @@ Blockly.defineBlocksWithJsonArray([
 		let output = `[${code}]`;
 
 		alert(output);
-		try {
-			eval(output)
-		} catch (error) {
-			alert(error);
-		}
+		
 		return output;
 	}
   
@@ -349,7 +345,7 @@ Blockly.defineBlocksWithJsonArray([
   
   Blockly.JavaScript["turn"] = function(block) {
   
-      let value = block.getFieldValue("value");
+      let value = block.getFieldValue("turn");
   
       return `new Command(Command.turn, ${value}), `;
   }
@@ -378,7 +374,7 @@ Blockly.defineBlocksWithJsonArray([
   
   Blockly.JavaScript["is_color"] = function(block) {
   
-      let value = Blockly.JavaScript.statementToCode(block, "value", Blockly.JavaScript.ORDER_NONE);
+      let value = block.getFieldValue("value");
       return `new Command(Command.is_color, ${value}), `;
   }
   
@@ -407,18 +403,18 @@ Blockly.defineBlocksWithJsonArray([
   
   Blockly.JavaScript["is_tile_ahead"] = function(block) {
   
-      let value = Blockly.JavaScript.statementToCode(block, "value", Blockly.JavaScript.ORDER_NONE);
+      let value = block.getFieldValue("value");
       return `new Command(Command.is_tile_ahead, ${value}), `;
   }
   
   Blockly.JavaScript["is_tile_current"] = function(block) {
   
-      let value = Blockly.JavaScript.statementToCode(block, "value", Blockly.JavaScript.ORDER_NONE);
+      let value = block.getFieldValue("value");
       return `new Command(Command.is_tile_current, ${value}), `;
   }
   
   Blockly.JavaScript["deposit"] = function(block) {
   
-      let value = Blockly.JavaScript.statementToCode(block, "value", Blockly.JavaScript.ORDER_NONE);
+      let value = block.getFieldValue("value");
       return `new Command(Command.deposit, ${value}), `;
   }
