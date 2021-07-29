@@ -3,33 +3,36 @@ Easy puzzle solution:
 Repeat
 walk
 if IsTileAhead(Wall) OR IsTileAhead(Gate) do turn(right)
-Until IsColor(Purple)
+Until IsColor(Red)
 
-TurnX2(any same)
+Turn(around)
 
 repeat
 walk
-if IsTileCurrent(Junction) do Turn(right)
-if IsTileAhead(Wall) do Turn(Right)
-until IsColor(Orange)
+if IsTileCurrent(Junction) or IsTileAhead(Wall) do Turn(right)
+until IsColor(Blue)
 
-turnX2
+turn(around)
 
 Repeat
 Walk
 if IsTileCurrent(Junction) do Turn(right)
 if IsTileAhead(wall) do turn(left)
-until Pink
+until Yellow
 
-Turn x2
+Turn(left)
 
 Repeat
 Walk
 until IsTileCurrent(Junction)
+
+Repeat
+Walk
+until IsTileCurrent(Junction)
+
 Turn(Left)
 
 Repeat
 Walk
-if IsTileCurrent(Junction) do turn(right)
-if IsTileAhead(Wall) do turn(right)
+if IsTileCurrent(Junction) or if IsTileAhead(Wall) do turn(right)
 until REACHED_END

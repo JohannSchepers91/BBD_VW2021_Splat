@@ -1,6 +1,6 @@
 import { Engine } from "../engine/engine.js";
 import { Render } from "../engine/render.js";
-import { MEDIUM_LEVEL } from "../levels/medlevel.js"
+import { HARD_LEVEL } from "../levels/hardlevel.js"
 
 //Vars
 var render;
@@ -23,27 +23,19 @@ function reset() {
         render.stopRender();
     }
     
-    render = new Render(document.getElementById("map"), [MEDIUM_LEVEL]);
+    render = new Render(document.getElementById("map"), [HARD_LEVEL]);
     render.renderFirst();
 }
 
 async function start() {
-
-    let commands = MEDIUM_LEVEL.solution;
-    let engine = new Engine(MEDIUM_LEVEL.map, MEDIUM_LEVEL.player, commands);
+    
+    render.stopRender();
+    let commands = HARD_LEVEL.solution;
+    let engine = new Engine(HARD_LEVEL.map, HARD_LEVEL.player, commands);
     let res = engine.start();
     let changes = engine.changes;
 
-    render = new Render(document.getElementById("map"), changes);
-    let renderRes = await render.startRender();
-
-    if (renderRes) {
-
-        switch (res) {
-            case 0: alert("Reached goal!"); break;
-            case 1: alert("Stuck in infinite loop"); break;
-            case 2: alert("Did not reach the end"); break;
-        }
-    }
+    render = new Render(document.getElementById("map"), changes, res);
+    await render.startRender();
 }
 

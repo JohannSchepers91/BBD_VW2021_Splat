@@ -6,11 +6,13 @@ export class Render {
 
     mapElement;
     changes = [];
+    messageState = -1;
     stop = false;
 
-    constructor(mapElement, changes) {
+    constructor(mapElement, changes, messageState) {
         this.mapElement = mapElement;
         this.changes = changes;
+        this.messageState = messageState;
     }
 
     renderFirst() {
@@ -31,7 +33,7 @@ export class Render {
         for (let i = 0; i < this.changes.length; i++) {
 
             if (this.stop) {
-                return false;
+                return;
             }
 
             if (Change.equals(currentChange, this.changes[i])) {
@@ -44,7 +46,13 @@ export class Render {
             await Render.sleep(100);
         }
 
-        return true;
+        switch (this.messageState) {
+            case 0: alert("Reached goal!"); break;
+            case 1: alert("Stuck in infinite loop"); break;
+            case 2: alert("Did not reach the end"); break;
+            case 3: alert("Invalid bank deposit"); break;
+            default : alert("Invalid solution"); break;
+        }
     }
 
     stopRender() {
