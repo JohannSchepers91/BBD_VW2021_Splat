@@ -1,6 +1,7 @@
 import { Direction } from "../models/direction.js";
 import { Change } from "../models/engineChange.js";
 import { Engine } from "./engine.js";
+import { Player } from "../models/player.js";
 
 export class Render {
 
@@ -77,77 +78,22 @@ export class Render {
                 }
 
                 let tile = map[y][x];
-                let char = "";
-                let color = -1;
+                let src = "";
         
                 if (player.x === x && player.y === y) {
-    
-                    if (player.dir === Direction.North) {
-                        char = "^ ";
-    
-                    } else if (player.dir === Direction.East) {
-                        char = "> ";
-    
-                    } else if (player.dir === Direction.South) {
-                        char = "v ";
-    
-                    } else if (player.dir === Direction.West) {
-                        char = "< ";
-    
-                    } else {
-                        char = "x ";
-                    }
-    
-                    color = player.color;
-        
-                } else if (tile === "Wall") {
-                    char = "# ";
-        
-                } else if (tile === "Empty") {
-                    char = ". ";
-                
-                } else if (tile === "Wall_Pipe") {
-                    char = "= ";
-
-                } else if (tile.startsWith("Splat")) {
-                    char = "S ";
-                    color = Engine.getTileColor(tile);
-    
-                } else if (tile.startsWith("Gate")) {
-                    char = "G ";
-                    color = Engine.getTileColor(tile);
-    
-                } else if (tile.startsWith("Goal")) {
-                    char = "F ";
-                    color = Engine.getTileColor(tile);
-    
-                } else if (tile.startsWith("Junction")) {
-                    char = "+ ";
+                    src = `Player ${player.color} ${player.dir}`;
 
                 } else if (tile.startsWith("Mixer_A")) {
-                    char = "M ";
+                    src = (tile).substring(0, tile.indexOf(" "));
 
                 } else if (tile.startsWith("Mixer_B")) {
-                    char = "S ";
-                    color = Engine.getTileColor(tile);
+                    src = (tile).substring(0, tile.lastIndexOf(" "));
 
-                } else if (tile.startsWith("Bank_A")) {
-                    char = "B ";
-
-                } else if (tile.startsWith("Bank_B")) {
-                    let index = Engine.getTileIndex(tile);
-                    color = Engine.getTileColor(tile);
-                    char = `${index} `;
-                }
-    
-                //Last character
-                if (x == 17) {
-                    line += `<tt class="color-${color}">${char}</tt>`;
-    
                 } else {
-                    line += `<tt class="color-${color}">${char} &nbsp </tt>`;
+                    src = tile;
                 }
     
+                line += `<img class="image" src="/assets/${src}.png"/>`;
                 
             }
         

@@ -270,6 +270,10 @@ Blockly.defineBlocksWithJsonArray([
 		  [
 			"Junction",
 			"Junction"
+		  ],
+		  [
+			"Gate",
+			"Gate"
 		  ]
 		]
 	  }
@@ -310,6 +314,10 @@ Blockly.defineBlocksWithJsonArray([
 		  [
 			"Junction",
 			"Junction"
+		  ],
+		  [
+			"Gate",
+			"Gate"
 		  ]
 		]
 	  }
