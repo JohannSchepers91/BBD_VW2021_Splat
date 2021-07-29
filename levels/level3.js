@@ -4,7 +4,7 @@ import { Color } from "../models/color.js";
 import { Command } from "../models/command.js";
 import { Turn } from "../models/turn.js";
 
-export const MEDIUM_LEVEL = {
+export const LEVEL_3 = {
 
 map : [
     ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],

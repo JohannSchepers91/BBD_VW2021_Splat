@@ -1,7 +1,7 @@
 import { Converter } from "../blockly/converter.js";
 import { Engine } from "../engine/engine.js";
 import { Render } from "../engine/render.js";
-import { HARD_LEVEL } from "../levels/hardlevel.js"
+import { HARD_LEVEL } from "../levels/level4.js"
 
 //Vars
 var render;

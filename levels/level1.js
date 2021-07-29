@@ -4,7 +4,7 @@ import { Direction } from "../models/direction.js";
 import { Player } from "../models/player.js";
 import { Turn } from "../models/turn.js";
 
-export const TEST_LEVEL = {
+export const LEVEL_1 = {
 
 map : [
     ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
