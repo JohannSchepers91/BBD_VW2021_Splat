@@ -1,7 +1,7 @@
 import { Converter } from "../blockly/converter.js";
 import { Engine } from "../engine/engine.js";
 import { Render } from "../engine/render.js";
-import { EASY_LEVEL } from "../levels/level2.js"
+import { MEDIUM_LEVEL  } from "../levels/medlevel.js"
 
 //Vars
 var render;
@@ -24,7 +24,7 @@ function reset() {
         render.stopRender();
     }
     
-    render = new Render(document.getElementById("map"), [EASY_LEVEL ]);
+    render = new Render(document.getElementById("map"), [MEDIUM_LEVEL ]);
     render.renderFirst();
 }
 
@@ -39,7 +39,7 @@ async function start() {
     }
     
     render.stopRender();
-    let engine = new Engine(EASY_LEVEL.map, EASY_LEVEL .player, commands);
+    let engine = new Engine(MEDIUM_LEVEL.map, MEDIUM_LEVEL.player, commands);
     let res = engine.start();
     let changes = engine.changes;
 
