@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    background-color: #333;
+    /* background-color: #333; */
 }
 
 body {
@@ -41,7 +41,7 @@ layout */ */
 
 .nav a {
   float: left;
-  color: yellow;
+  color: black;
   text-align: center;
   padding: 20px 20px;
   text-decoration: none;
@@ -110,8 +110,8 @@ layout */ */
   background-color: #333;
   border-radius: 20%;
   position: relative; left: 350px; bottom: 100px;
-  outline-color:red;
-  outline-style: dashed;
+  /* outline-color:red;
+  outline-style: dashed; */
 }
 
 .button {
