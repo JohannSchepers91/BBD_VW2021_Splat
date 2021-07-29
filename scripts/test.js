@@ -34,16 +34,7 @@ async function start() {
     let res = engine.start();
     let changes = engine.changes;
 
-    render = new Render(document.getElementById("map"), changes);
-    let renderRes = await render.startRender();
-
-    if (renderRes) {
-
-        switch (res) {
-            case 0: alert("Reached goal!"); break;
-            case 1: alert("Stuck in infinite loop"); break;
-            case 2: alert("Did not reach the end"); break;
-        }
-    }
+    render = new Render(document.getElementById("map"), changes, res);
+    await render.startRender();
 }
 

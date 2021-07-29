@@ -11,6 +11,7 @@ export class Engine {
     changes = [];
     emergencyStop = false;
     reachedEnd = false;
+    indexOutOfBounds = false;
 
     constructor(map, player, commands) {
 
@@ -39,6 +40,10 @@ export class Engine {
             return 1;
         }
 
+        if (this.indexOutOfBounds) {
+            return 3;
+        }
+
         if (!this.reachedEnd) {
             return 2;
         }
@@ -65,7 +70,7 @@ export class Engine {
 
         for (let i = 0; i < commands.length; i++) {
 
-            if (this.emergencyStop) {
+            if (this.emergencyStop | this.indexOutOfBounds) {
                 return;
             }
 
@@ -265,7 +270,7 @@ export class Engine {
     applyRepeatUntil(command) {
 
         do {
-            if (this.emergencyStop || this.reachedEnd) {
+            if (this.emergencyStop || this.reachedEnd || this.indexOutOfBounds) {
                 return;
             }
 
@@ -283,10 +288,13 @@ export class Engine {
         }
 
         let pos = this.findTile("Bank_B", command.param1);
-        
-        let bankIndex = Engine.getTileIndex(tile);
 
-        let newTile = `Bank_B ${this.player.color} ${bankIndex}`;
+        if (pos === null) {
+            this.indexOutOfBounds = true;
+            return;
+        }
+
+        let newTile = `Bank_B ${this.player.color} ${command.param1}`;
 
         this.map[pos.y][pos.x] = newTile;
         this.pushChanges();
@@ -324,11 +332,11 @@ export class Engine {
 
     evaluateTileType(param, tile) {
 
-        if (tile.startsWith(param)) {
+        if (param === "Splat" && (tile.startsWith("Splat") || tile.startsWith("Mixer_B") || tile.startsWith("Bank_B"))) {
             return true;
         }
 
-        if (param === "Splat" && (tile.startsWith("Splat") || tile.startsWith("Mixer_B") || tile.startsWith("Bank_B"))) {
+        if (tile.startsWith(param)) {
             return true;
         }
 
