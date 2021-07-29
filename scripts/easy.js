@@ -22,10 +22,11 @@ document.getElementById("preview").onclick = function() {
     showSolution();
 };
 
-function reset() {
+async function reset() {
 
     if (!!render) {
         render.stopRender();
+        await Render.sleep(300);
         render.resetTo(LEVEL_1);
 
     } else {
