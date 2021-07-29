@@ -111,7 +111,7 @@ Blockly.defineBlocksWithJsonArray([
 	  },
 	  {
 		"type": "input_statement",
-		"name": "NAME"
+		"name": "else_code"
 	  }
 	],
 	"previousStatement": null,
@@ -130,7 +130,7 @@ Blockly.defineBlocksWithJsonArray([
 	  },
 	  {
 		"type": "input_statement",
-		"name": "NAME"
+		"name": "code"
 	  }
 	],
 	"previousStatement": null,
@@ -334,11 +334,7 @@ Blockly.defineBlocksWithJsonArray([
 		let output = `[${code}]`;
 
 		alert(output);
-		try {
-			eval(output)
-		} catch (error) {
-			alert(error);
-		}
+		
 		return output;
 	}
   
