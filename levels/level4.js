@@ -4,7 +4,7 @@ import { Player } from "../models/player.js";
 import { Command } from "../models/command.js";
 import { Turn } from "../models/turn.js";
 
-export const HARD_LEVEL = {
+export const LEVEL_4 = {
 
 map : [
     ["Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall"],
