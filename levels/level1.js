@@ -29,24 +29,6 @@ map : [
 
 player : new Player(2, 1, Direction.South, Color.orange),
 
-
-//Bank test
-/*solution : [
-
-    new Command(Command.turn, Turn.left),
-
-    new Command(Command.repeat_until, new Command(Command.reached_end), [
-
-        new Command(Command.walk),
-
-        new Command(Command.if_do_else, new Command(Command.is_tile_current, "Bank"), [
-
-            new Command(Command.deposit, 3)
-        ])
-
-    ])
-]*/
-
 solution : [
 
     new Command(Command.repeat_until, new Command(Command.reached_end), [

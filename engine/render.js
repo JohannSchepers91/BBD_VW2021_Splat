@@ -91,9 +91,6 @@ export class Render {
                 } else if (tile.startsWith("Mixer_B")) {
                     src = tile.substring(0, tile.lastIndexOf(" "));
 
-                } else if (tile.startsWith("Goal")) {
-                    src = tile.substring(0, tile.indexOf(" "));
-                    
                 } else {
                     src = tile;
                 }
@@ -137,9 +134,6 @@ export class Render {
                 } else if (tile.startsWith("Mixer_B")) {
                     src = tile.substring(0, tile.lastIndexOf(" "));
 
-                } else if (tile.startsWith("Goal")) {
-                    src = tile.substring(0, tile.indexOf(" "));
-                    
                 } else {
                     src = tile;
                 }
