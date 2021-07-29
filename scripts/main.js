@@ -60,16 +60,12 @@
 
     toolbox += '<block type="logic_boolean"></block>';
 
-
     toolbox += '<block type="logic_operation"></block>';
-
 
     toolbox += '</xml>';
 
 
-    var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
-    
-   
+    var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox})
     
   
   })();
