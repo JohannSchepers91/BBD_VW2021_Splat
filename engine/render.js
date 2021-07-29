@@ -68,8 +68,7 @@ export class Render {
     
         this.mapElement.innerHTML = "";
     
-        for (let y = 0; y < 18; y++) {
-            let line = "";        
+        for (let y = 0; y < 18; y++) {     
         
             for (let x = 0; x < 18; x++) {
         
@@ -93,11 +92,9 @@ export class Render {
                     src = tile;
                 }
     
-                line += `<img class="image" src="/assets/${src}.png"/>`;
+                this.mapElement.innerHTML += `<img class="image" src="/assets/${src}.png"/>`;
                 
             }
-        
-            this.mapElement.innerHTML += line + "</br>";
         }
     }
 }

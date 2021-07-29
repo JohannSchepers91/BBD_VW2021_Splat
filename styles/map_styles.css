@@ -1,12 +1,10 @@
 .map {
     border-style: solid;
-    /* width: fit-content;
-    height: fit-content; */
-    padding: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-    /* margin: auto; */
+    border-width: 4px;
     background-color: black;
+    width: 584px;
+    height: 584px;
+
 }
 
 .action-buttons {
@@ -15,44 +13,9 @@
     padding-top: 20px;
 }
 
-tt {
+.image {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
     float: left;
-    color: white;
-}
-
-.color--1 {
-    color: white;
-}
-
-.color-0 {
-    color: grey;
-}
-
-.color-1 {
-    color: rgb(243, 67, 67);
-}
-
-.color-2 {
-    color: yellow;
-}
-
-.color-3 {
-    color: orange;
-}
-
-.color-4 {
-    color: rgb(71, 71, 243);
-}
-
-.color-5 {
-    color: rgb(165, 10, 165);
-}
-
-.color-6 {
-    color: green;
-}
-
-.color-7 {
-    color: rgb(255, 255, 255);
-    
 }
