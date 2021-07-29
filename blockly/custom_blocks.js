@@ -80,6 +80,22 @@ Blockly.defineBlocksWithJsonArray([
 	"helpUrl": ""
   },
   {
+	"type": "deposit",
+	"message0": "Deposit %1",
+	"args0": [
+	  {
+		"type": "field_input",
+		"name": "value",
+		"text": ""
+	  }
+	],
+	"previousStatement": null,
+	"nextStatement": null,
+	"colour": 135,
+	"tooltip": "",
+	"helpUrl": ""
+  },
+  {
 	"type": "if_do_else",
 	"message0": "If %1 then %2 else %3",
 	"args0": [
@@ -302,26 +318,10 @@ Blockly.defineBlocksWithJsonArray([
 	"helpUrl": ""
   },
   {
-	"type": "deposit",
-	"message0": "Deposit %1",
-	"args0": [
-	  {
-		"type": "field_input",
-		"name": "value",
-		"text": ""
-	  }
-	],
-	"previousStatement": null,
-	"nextStatement": null,
-	"colour": 30,
-	"tooltip": "",
-	"helpUrl": ""
-  },
-  {
 	"type": "reached_end",
 	"message0": "Reached End",
 	"output": "CONDITION",
-	"colour": 30,
+	"colour": 315,
 	"tooltip": "",
 	"helpUrl": ""
   }]);
