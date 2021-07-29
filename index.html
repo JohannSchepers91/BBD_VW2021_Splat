@@ -5,14 +5,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Splat</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"> 
         <link rel="stylesheet" href="styles/map_styles.css"></style>
         <link rel="stylesheet" href="styles/main.css"></style>
 
     </head>
-
+   
     <body>
-        <script type="module" src="./scripts/index.js"></script>
 
+        <div class="nav">
+            <a  href="home.html">Home</a>
+            <!-- <a  href="../index.html">SPLAT</a> -->
+            <a class="active" href="level1.html">Easy Level</a>
+            <a href="level2.html">Medium Level</a>
+            <a href="level3.html">Difficult Level</a>
+          
+        </div>
+
+    <script type="module" src="./scripts/index.js"></script>
+
+    <table style="width:100%">
+
+        <tr>
+            <td>
         <div class="row">
 
             <div class="column">
@@ -25,18 +41,25 @@
 
         </div>
 
+   
         <div class="action-buttons">
-            <button id="start">Start</button>
-            <button id="reset">Reset</button>
-            <button id="next">Next</button>
+            <button id="start" class = "button1">Start</button>
+            <button id="reset" class = "button1">Reset</button>
+            <button id="next" class = "button1">Next</button>
         </div>
+    </td>
 
+    <br>
+    <br>
         <!-- BLOCKLY TOOLBOX -->
         <xml id="toolbox" style="display: none">
             <block type="movement"></block>
         </xml>
 
-        <button id="execute">execute</button>
+        <button id="execute" class = "button">execute</button>
+    </tr>
+        </table>
+    </table>
 
         <script src="https://unpkg.com/blockly"></script>
         <!-- <script src="https://unpkg.com/blockly/blockly.min.js"></script>
