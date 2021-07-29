@@ -18,6 +18,10 @@ document.getElementById("reset").onclick = function() {
     reset();
 };
 
+document.getElementById("preview").onclick = function() {  
+    showSolution();
+};
+
 function reset() {
 
     if (!!render) {
@@ -30,6 +34,17 @@ function reset() {
     }
 }
 
+async function showSolution() {
+    
+    render.stopRender();
+    let engine = new Engine( LEVEL_3.map, LEVEL_3.player, LEVEL_3.solution);
+    let res = engine.start();
+    let changes = engine.changes;
+
+    render.changes = changes;
+    render.messageState = res;
+    await render.startRender();
+}
 
 async function start() {
 

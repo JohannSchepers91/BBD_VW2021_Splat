@@ -18,6 +18,10 @@ document.getElementById("reset").onclick = function() {
     reset();
 };
 
+document.getElementById("preview").onclick = function() {  
+    showSolution();
+};
+
 function reset() {
 
     if (!!render) {
@@ -28,6 +32,18 @@ function reset() {
         render = new Render(document.getElementById("map"), [LEVEL_1]);
         render.renderFirst();
     }
+}
+
+async function showSolution() {
+    
+    render.stopRender();
+    let engine = new Engine( LEVEL_1.map, LEVEL_1.player, LEVEL_1.solution);
+    let res = engine.start();
+    let changes = engine.changes;
+
+    render.changes = changes;
+    render.messageState = res;
+    await render.startRender();
 }
 
 
