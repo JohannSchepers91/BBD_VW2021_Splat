@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    background-color: #333;
 }
 
 body {
@@ -40,7 +41,7 @@ layout */ */
 
 .nav a {
   float: left;
-  color: black;
+  color: yellow;
   text-align: center;
   padding: 20px 20px;
   text-decoration: none;
@@ -108,6 +109,9 @@ layout */ */
   cursor: pointer;
   background-color: #333;
   border-radius: 20%;
+  position: relative; left: 350px; bottom: 100px;
+  outline-color:red;
+  outline-style: dashed;
 }
 
 .button {
@@ -121,7 +125,9 @@ layout */ */
     margin: 4px 2px;
     cursor: pointer;
     background-color:  red;
-  position: relative; left: 500px;
+  position: relative; left: 400px;  bottom: 100px;
+  border-radius: 20%;
+  width: fit-content;
   }
 
 .h4 {
