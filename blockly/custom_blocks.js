@@ -1,4 +1,4 @@
-/*// import { Command } from "./models/Command.js";
+// import { Command } from "./models/Command.js";
 Blockly.defineBlocksWithJsonArray([
 
     {
@@ -24,8 +24,8 @@ Blockly.defineBlocksWithJsonArray([
 Blockly.JavaScript['movement'] = function(block) {
     let value = '\''+ block.getFieldValue('VALUE') + '\'';
     return 'new Command(Command.walk);';
-};*/
-Blockly.defineBlocksWithJsonArray([
+};
+/*Blockly.defineBlocksWithJsonArray([
 
   {
       type: "start",
@@ -300,4 +300,4 @@ Blockly.defineBlocksWithJsonArray([
   
       let value = Blockly.JavaScript.statementToCode(block, "value", Blockly.JavaScript.ORDER_NONE);
       return `new Command(Command.deposit, ${value}), `;
-  }
+  }*/
