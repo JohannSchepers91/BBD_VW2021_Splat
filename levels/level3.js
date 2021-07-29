@@ -159,7 +159,7 @@ solution : [
 
     new Command(Command.turn, Turn.left),
 
-    new Command(Command.repeat_until,new Command(Command.is_tile_current,"Mixer"),[
+    new Command(Command.repeat_until,new Command(Command.is_color,Color.purple),[
         new Command(Command.walk),
         new Command(Command.if_do_else,new Command(Command.is_tile_ahead, "Wall"),[
             new Command(Command.turn,Turn.right)])
@@ -213,7 +213,7 @@ solution : [
     new Command(Command.walk),
     new Command(Command.turn, Turn.left),
 
-    new Command(Command.repeat_until,new Command(Command.is_tile_current,"Mixer"),[
+    new Command(Command.repeat_until,new Command(Command.is_color,Color.purple),[
         new Command(Command.walk),
         new Command(Command.if_do_else,new Command(Command.is_tile_ahead, "Wall"),[
             new Command(Command.turn,Turn.right)])
