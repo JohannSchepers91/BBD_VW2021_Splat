@@ -4,13 +4,15 @@ Repeat
 Walk
 if IsTileCurrent(junction) do 
 (
-if IsTileAhead(open) or IsTileAhead(Splat) do Turn(left)
 if IsTileAhead(wall) do turn(right)
+else do Turn(left)
 )
+if IsTileAhead(Splat) do turn(left)
 until IsTileCurrent(Bank)
-deposit(index by blue mixer) -- Banked Red splat
 
-turn(right)
+deposit(4) -- Banked Red splat
+
+turn(around)
 walk
 turn(right)
 
@@ -19,7 +21,7 @@ walk
 if IsTileAhead(splat) do turn(right)
 if IsTileAhead(wall) do turn(left)
 until IsTileCurrent(Bank)
-deposit(index by yellow mixer) --Banked Blue splat and made Purple
+deposit(2) --Banked Blue splat and made Purple
 
 walk
 turn(right)
@@ -27,8 +29,9 @@ turn(right)
 repeat
 walk
 if IsTileCurrent(Junction) AND IsTileAhead(Wall) do Turn(right)
-else if IsTileCurrent(Junction) AND IsTileAhead(Empty) do Turn(left)
-if IsTileAhead(Splat) do turn(around) + Walk + turn(left)
+else ( if IsTileAhead(Wall) do turn(left)
+if IsTileCurrent(Junction) AND IsTileAhead(Empty) do Turn(left) )
+if IsTileAhead(Splat) do (turn(around) + Walk + turn(left))
 until IsTileAhead(wall)
 
 turn(around)
@@ -58,25 +61,26 @@ Repeat
 Walk
 if IsTileCurrent(junction) do 
 (
-if IsTileAhead(open) or IsTileAhead(Splat) do Turn(left)
 if IsTileAhead(wall) do turn(right)
+else do Turn(left)
 )
+if IsTileAhead(Splat) do turn left
 until IsTileCurrent(Bank)
-deposit(index by red mixer) -- Banked Yellow Splat
+deposit(1) -- Banked Yellow Splat
 
+turn(right)
 repeat
 walk
 if IsTileAhead(wall) do turn(right)
 until IsTileAhead(empty) AND IsTileCurrent(Junction)
 
-walk 
 turn(left)
 
 repeat
 walk
 if IsTileCurrent(Junction) AND IsTileAhead(wall) do turn(left)
 if IsTileAhead(wall) do turn(right)
-until IsTileCurrent(Junction) AND IsTileAhead(Empty) -- Made Orange Splat
+until IsTileCurrent(Junction) AND IsColor(Red) -- Made Orange Splat
 
 turn(right)
 repeat
@@ -94,6 +98,12 @@ until IsTileAhead(Splat)
 turn(around)
 walk
 turn(right)
+
+repeat
+walk
+if IsTileAhead(wall) do turn(left)
+if IsTileAhead(wall) do turn(around)
+until IsTileCurrent(Junction) AND IsTileAhead(Empty)
 
 repeat
 walk
@@ -145,7 +155,7 @@ repeat
 walk
 if IsTileAhead(Wall) do turn(right)
 if IsTileAhead(Wall) do turn(around)
-until IsTileCurrent(Junction) AND IsTileAhead(Empty) -- Made Green Splat
+until IsTileCurrent(Junction) AND IsColor(Yellow) -- Made Green Splat
 
 turn(left)
 repeat
@@ -157,6 +167,7 @@ turn(right)
 repeat
 walk
 if IsTileCurrent(Junction) AND IsTileAhead(Wall) do turn(left)
+if IsTileAhead(Gate) do turn(around)
 if IsTileAhead(Wall) do turn(right)
 until IsTileAhead(Wall)
 
@@ -173,12 +184,14 @@ Repeat
 Walk
 if IsTileCurrent(junction) do 
 (
-if IsTileAhead(open) or IsTileAhead(Splat) do Turn(left)
 if IsTileAhead(wall) do turn(right)
+else do Turn(left)
 )
+if IsTileAhead(Splat) do turn(left)
 until IsTileCurrent(Bank)
-deposit(index by Goal) -- Banked Green Splat
+deposit(3) -- Banked Green Splat
 
+turn(right)
 repeat
 walk
 if IsTileAhead(Wall) do turn(right)
