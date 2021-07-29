@@ -11,7 +11,7 @@ map : [
     ["Wall", "Empty", "Empty", "Empty", "Empty", "Wall", "Mixer_A 0", "Wall_Pipe", "Mixer_B 0 0", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall", "Splat 2", "Wall"],
     ["Wall", "Empty", "Empty", "Wall", "Empty", "Wall", "Empty", "Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Empty", "Wall"],
     ["Wall", "Wall", "Wall", "Wall", "Empty", "Wall", "Empty", "Wall", "Junction", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Gate 2", "Junction", "Wall"],
-    ["Wall", "Empty", "Empty", "Empty", "Junction", "Wall", "Empty", "Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Bank_A 1", "Wall"],
+    ["Wall", "Empty", "Empty", "Empty", "Junction", "Wall", "Empty", "Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Bank_A", "Wall"],
     ["Wall", "Empty", "Wall", "Wall", "Empty", "Wall", "Empty", "Wall", "Empty", "Junction", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall", "Empty", "Wall"],
     ["Wall", "Empty", "Empty", "Wall", "Empty", "Wall", "Empty", "Wall", "Wall", "Empty", "Wall", "Wall", "Wall", "Wall", "Wall", "Wall", "Gate 5", "Wall"],
     ["Wall", "Empty", "Empty", "Wall", "Junction", "Gate 4", "Junction", "Gate 1", "Empty", "Junction", "Empty", "Empty", "Empty", "Empty", "Empty", "Wall", "Empty", "Wall"],
