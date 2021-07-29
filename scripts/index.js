@@ -22,10 +22,12 @@ function reset() {
 
     if (!!render) {
         render.stopRender();
+        render.resetTo(LEVEL_1);
+
+    } else {
+        render = new Render(document.getElementById("map"), [LEVEL_1]);
+        render.renderFirst();
     }
-    
-    render = new Render(document.getElementById("map"), [LEVEL_1]);
-    render.renderFirst();
 }
 
 
@@ -36,6 +38,7 @@ async function start() {
 
     if (commands === null || commands === undefined) {
         alert("Cannot start an empty solution");
+        return;
     }
     
     render.stopRender();
@@ -43,6 +46,7 @@ async function start() {
     let res = engine.start();
     let changes = engine.changes;
 
-    render = new Render(document.getElementById("map"), changes, res);
+    render.changes = changes;
+    render.messageState = res;
     await render.startRender();
 }

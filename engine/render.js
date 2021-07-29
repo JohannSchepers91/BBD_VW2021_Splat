@@ -6,6 +6,7 @@ import { Player } from "../models/player.js";
 export class Render {
 
     mapElement;
+    currentRender = [];
     changes = [];
     messageState = -1;
     stop = false;
@@ -18,7 +19,12 @@ export class Render {
 
     renderFirst() {
         this.stop = false;
-        this.renderMap(this.changes[0]);
+        this.initMap(this.changes[0]);
+    }
+
+    resetTo(change) {
+        this.stop = false;
+        this.renderMap(change);
     }
 
     static sleep(ms) {
@@ -60,8 +66,49 @@ export class Render {
         this.stop = true;
     }
 
-
     renderMap(change) {
+
+        let player = change.player;
+        let map = change.map;
+
+        for (let y = 0; y < 18; y++) {
+
+            for (let x = 0; x < 18; x++) {
+
+                if (this.stop) {
+                    return;
+                }
+
+                let tile = map[y][x];
+                let src = "";
+        
+                if (player.x === x && player.y === y) {
+                    src = `Player ${player.color} ${player.dir}`;
+
+                } else if (tile.startsWith("Mixer_A")) {
+                    src = tile.substring(0, tile.indexOf(" "));
+
+                } else if (tile.startsWith("Mixer_B")) {
+                    src = tile.substring(0, tile.lastIndexOf(" "));
+
+                } else if (tile.startsWith("Goal")) {
+                    src = tile.substring(0, tile.indexOf(" "));
+                    
+                } else {
+                    src = tile;
+                }
+
+                if (src !== this.currentRender[y][x]) {
+                    this.currentRender[y][x] = src;
+
+                    document.getElementById(`${y}_${x}`).src = `/assets/${src}.png`;
+                }
+            }
+        }
+    }
+
+
+    initMap(change) {
 
         let player = change.player;
         let map = change.map;
@@ -70,6 +117,8 @@ export class Render {
     
         for (let y = 0; y < 18; y++) {     
         
+            let row = [];
+
             for (let x = 0; x < 18; x++) {
         
                 if (this.stop) {
@@ -83,18 +132,23 @@ export class Render {
                     src = `Player ${player.color} ${player.dir}`;
 
                 } else if (tile.startsWith("Mixer_A")) {
-                    src = (tile).substring(0, tile.indexOf(" "));
+                    src = tile.substring(0, tile.indexOf(" "));
 
                 } else if (tile.startsWith("Mixer_B")) {
-                    src = (tile).substring(0, tile.lastIndexOf(" "));
+                    src = tile.substring(0, tile.lastIndexOf(" "));
 
+                } else if (tile.startsWith("Goal")) {
+                    src = tile.substring(0, tile.indexOf(" "));
+                    
                 } else {
                     src = tile;
                 }
     
-                this.mapElement.innerHTML += `<img class="image" src="/assets/${src}.png"/>`;
-                
+                this.mapElement.innerHTML += `<img id="${y}_${x}" class="image" src="/assets/${src}.png"/>`;
+                row.push(src);
             }
+
+            this.currentRender.push(row);
         }
     }
 }
