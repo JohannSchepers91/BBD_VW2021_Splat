@@ -43,7 +43,7 @@ export class Render {
             currentChange = this.changes[i];
             this.renderMap(this.changes[i]);
 
-            await Render.sleep(100);
+            await Render.sleep(500);
         }
 
         switch (this.messageState) {

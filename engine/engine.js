@@ -332,8 +332,16 @@ export class Engine {
 
     evaluateTileType(param, tile) {
 
-        if (param === "Splat" && (tile.startsWith("Splat") || tile.startsWith("Mixer_B") || tile.startsWith("Bank_B"))) {
-            return true;
+        if (param === "Splat") {
+            return (tile.startsWith("Splat") || tile.startsWith("Mixer_B") || tile.startsWith("Bank_B"));
+        }
+
+        if (param === "Bank") {
+            return tile.startsWith("Bank_A");
+        }
+
+        if (param === "Mixer") {
+            return tile.startsWith("Mixer_A");
         }
 
         if (tile.startsWith(param)) {
