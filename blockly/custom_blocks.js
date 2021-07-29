@@ -328,93 +328,96 @@ Blockly.defineBlocksWithJsonArray([
 	"helpUrl": ""
   }]);
   
-	Blockly.JavaScript["start"] = function(block) {
+Blockly.JavaScript["start"] = function(block) {
 
-		let code = Blockly.JavaScript.statementToCode(block, "code", Blockly.JavaScript.ORDER_NONE);
-		let output = `[${code}]`;
+	let code = Blockly.JavaScript.statementToCode(block, "code", Blockly.JavaScript.ORDER_NONE);
+	let output = `[${code}]`;
+	
+	return output;
+}
 
-		alert(output);
-		
-		return output;
+Blockly.JavaScript["walk"] = function(block) {
+
+	return `new Command(Command.walk), `;
+}
+
+Blockly.JavaScript["turn"] = function(block) {
+
+	let value = block.getFieldValue("turn");
+
+	return `new Command(Command.turn, ${value}), `;
+}
+
+Blockly.JavaScript["if_do_else"] = function(block) {
+
+	let condition = Blockly.JavaScript.statementToCode(block, "condition", Blockly.JavaScript.ORDER_NONE);
+	let do_code = Blockly.JavaScript.statementToCode(block, "do_code", Blockly.JavaScript.ORDER_NONE);
+	let else_code = Blockly.JavaScript.statementToCode(block, "else_code", Blockly.JavaScript.ORDER_NONE);
+
+	if (else_code === "") {
+		return `new Command(Command.if_do_else, ${condition}, [${do_code}]), `;
+
+	} else {
+		return `new Command(Command.if_do_else, ${condition}, [${do_code}], [${else_code}]), `;
 	}
-  
-  Blockly.JavaScript["walk"] = function(block) {
-  
-      return `new Command(Command.walk), `;
-  }
-  
-  Blockly.JavaScript["turn"] = function(block) {
-  
-      let value = block.getFieldValue("turn");
-  
-      return `new Command(Command.turn, ${value}), `;
-  }
-  
-  Blockly.JavaScript["if_do_else"] = function(block) {
-  
-      let condition = Blockly.JavaScript.statementToCode(block, "condition", Blockly.JavaScript.ORDER_NONE);
-      let do_code = Blockly.JavaScript.statementToCode(block, "do_code", Blockly.JavaScript.ORDER_NONE);
-      let else_code = Blockly.JavaScript.statementToCode(block, "else_code", Blockly.JavaScript.ORDER_NONE);
-  
-      return `new Command(Command.if_do_else, ${condition}, [${do_code}], [${else_code}]), `;
-  }
-  
-  Blockly.JavaScript["repeat_until"] = function(block) {
-  
-      let condition = Blockly.JavaScript.statementToCode(block, "condition", Blockly.JavaScript.ORDER_NONE);
-      let code = Blockly.JavaScript.statementToCode(block, "code", Blockly.JavaScript.ORDER_NONE);
-  
-      return `new Command(Command.repeat_until, ${condition}, [${code}]), `;
-  }
-  
-  Blockly.JavaScript["reached_end"] = function(block) {
-  
-      return `new Command(Command.reached_end)`;
-  }
-  
-  Blockly.JavaScript["is_color"] = function(block) {
-  
-      let value = block.getFieldValue("value");
-      return `new Command(Command.is_color, ${value}), `;
-  }
-  
-  Blockly.JavaScript["not"] = function(block) {
-  
-      let condition = Blockly.JavaScript.statementToCode(block, "condition", Blockly.JavaScript.ORDER_NONE);
-  
-      return `new Command(Command.not, ${condition}), `;
-  }
-  
-  Blockly.JavaScript["and"] = function(block) {
-  
-      let condition1 = Blockly.JavaScript.statementToCode(block, "condition1", Blockly.JavaScript.ORDER_NONE);
-      let condition2 = Blockly.JavaScript.statementToCode(block, "condition2", Blockly.JavaScript.ORDER_NONE);
-  
-      return `new Command(Command.and, ${condition1}, [${condition2}]), `;
-  }
-  
-  Blockly.JavaScript["or"] = function(block) {
-  
-      let condition1 = Blockly.JavaScript.statementToCode(block, "condition1", Blockly.JavaScript.ORDER_NONE);
-      let condition2 = Blockly.JavaScript.statementToCode(block, "condition2", Blockly.JavaScript.ORDER_NONE);
-  
-      return `new Command(Command.or, ${condition1}, [${condition2}]), `;
-  }
-  
-  Blockly.JavaScript["is_tile_ahead"] = function(block) {
-  
-      let value = block.getFieldValue("value");
-      return `new Command(Command.is_tile_ahead, ${value}), `;
-  }
-  
-  Blockly.JavaScript["is_tile_current"] = function(block) {
-  
-      let value = block.getFieldValue("value");
-      return `new Command(Command.is_tile_current, ${value}), `;
-  }
-  
-  Blockly.JavaScript["deposit"] = function(block) {
-  
-      let value = block.getFieldValue("value");
-      return `new Command(Command.deposit, ${value}), `;
-  }
+}
+
+Blockly.JavaScript["repeat_until"] = function(block) {
+
+	let condition = Blockly.JavaScript.statementToCode(block, "condition", Blockly.JavaScript.ORDER_NONE);
+	let code = Blockly.JavaScript.statementToCode(block, "code", Blockly.JavaScript.ORDER_NONE);
+
+	return `new Command(Command.repeat_until, ${condition}, [${code}]), `;
+}
+
+Blockly.JavaScript["reached_end"] = function(block) {
+
+	return `new Command(Command.reached_end)`;
+}
+
+Blockly.JavaScript["is_color"] = function(block) {
+
+	let value = block.getFieldValue("value");
+	return `new Command(Command.is_color, ${value})`;
+}
+
+Blockly.JavaScript["not"] = function(block) {
+
+	let condition = Blockly.JavaScript.statementToCode(block, "condition", Blockly.JavaScript.ORDER_NONE);
+
+	return `new Command(Command.not, ${condition})`;
+}
+
+Blockly.JavaScript["and"] = function(block) {
+
+	let condition1 = Blockly.JavaScript.statementToCode(block, "condition1", Blockly.JavaScript.ORDER_NONE);
+	let condition2 = Blockly.JavaScript.statementToCode(block, "condition2", Blockly.JavaScript.ORDER_NONE);
+
+	return `new Command(Command.and, ${condition1}, [${condition2}])`;
+}
+
+Blockly.JavaScript["or"] = function(block) {
+
+	let condition1 = Blockly.JavaScript.statementToCode(block, "condition1", Blockly.JavaScript.ORDER_NONE);
+	let condition2 = Blockly.JavaScript.statementToCode(block, "condition2", Blockly.JavaScript.ORDER_NONE);
+
+	return `new Command(Command.or, ${condition1}, [${condition2}])`;
+}
+
+Blockly.JavaScript["is_tile_ahead"] = function(block) {
+
+	let value = block.getFieldValue("value");
+	return `new Command(Command.is_tile_ahead, "${value}")`;
+}
+
+Blockly.JavaScript["is_tile_current"] = function(block) {
+
+	let value = block.getFieldValue("value");
+	return `new Command(Command.is_tile_current, "${value}")`;
+}
+
+Blockly.JavaScript["deposit"] = function(block) {
+
+	let value = block.getFieldValue("value");
+	return `new Command(Command.deposit, ${value}), `;
+}
