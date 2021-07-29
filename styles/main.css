@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Create 2 equal colums */
+.column {
+    float: left;
+    width: 50%;
+    padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#blocklyDiv{
+    height: 480px;
+    width: 500;
+}
+
+@media screen and (max-width:600px) {
+    .column {
+      width: 100%;
+    }
+}

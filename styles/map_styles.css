@@ -1,15 +1,11 @@
-body {
-    font-family: Arial, sans-serif;
-}
-
 .map {
     border-style: solid;
-    width: fit-content;
-    height: fit-content;
+    /* width: fit-content;
+    height: fit-content; */
     padding: 10px;
     padding-left: 15px;
     padding-right: 15px;
-    margin: auto;
+    /* margin: auto; */
     background-color: black;
 }
 
