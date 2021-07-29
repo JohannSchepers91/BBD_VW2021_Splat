@@ -7,6 +7,7 @@ let options = {
       drag: true,
     },
     toolbox: document.getElementById('toolbox'),
+    trashcan: true,
 };
 
 // Injection (Adding a Blockly workspace)
