@@ -1,4 +1,6 @@
-/*// import { Command } from "./models/Command.js";
+// import { Command } from "./models/Command.js";
+// import * as Command from "../models/command.js"
+/*
 Blockly.defineBlocksWithJsonArray([
 
     {
@@ -326,19 +328,19 @@ Blockly.defineBlocksWithJsonArray([
 	"helpUrl": ""
   }]);
   
-  Blockly.JavaScript["start"] = function(block) {
-  
-      let code = Blockly.JavaScript.statementToCode(block, "code", Blockly.JavaScript.ORDER_NONE);
-      let output = `[${code}]`;
-  
-      alert(output);
-      try {
-          eval(output)
-      } catch (error) {
-          alert(error);
-      }
-      return output;
-  }
+	Blockly.JavaScript["start"] = function(block) {
+
+		let code = Blockly.JavaScript.statementToCode(block, "code", Blockly.JavaScript.ORDER_NONE);
+		let output = `[${code}]`;
+
+		alert(output);
+		try {
+			eval(output)
+		} catch (error) {
+			alert(error);
+		}
+		return output;
+	}
   
   Blockly.JavaScript["walk"] = function(block) {
   

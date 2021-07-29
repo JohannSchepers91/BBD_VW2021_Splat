@@ -6,12 +6,12 @@ const workspace = Blockly.inject('blocklyDiv',{
 
 const executeBtn = document.getElementById("execute");
 
-function showCode() {
-    // Generate JavaScript code and display it.
-    Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-    let code = Blockly.JavaScript.workspaceToCode(workspace);
-    alert(code);
-}
+// function showCode() {
+//     // Generate JavaScript code and display it.
+//     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+//     let code = Blockly.JavaScript.workspaceToCode(workspace);
+//     alert(code);
+// }
 
 function runCode() {
     // Generate JavaScript code and run it.
@@ -19,7 +19,7 @@ function runCode() {
     // Blockly.JavaScript.INFINITE_LOOP_TRAP =
     //     'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
     let code = Blockly.JavaScript.workspaceToCode(workspace);
-    alert("Execute");
+    // alert("Execute");
     console.log(code);
     // Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 
