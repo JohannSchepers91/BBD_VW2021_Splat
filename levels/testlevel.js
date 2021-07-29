@@ -31,7 +31,7 @@ player : new Player(2, 1, Direction.South, Color.orange),
 
 
 //Bank test
-solution : [
+/*solution : [
 
     new Command(Command.turn, Turn.left),
 
@@ -45,9 +45,9 @@ solution : [
         ])
 
     ])
-]
+]*/
 
-/*solution : [
+solution : [
 
     new Command(Command.repeat_until, new Command(Command.reached_end), [
 
@@ -63,6 +63,6 @@ solution : [
 
         new Command(Command.walk)
     ])
-]*/
+]
 
 };
